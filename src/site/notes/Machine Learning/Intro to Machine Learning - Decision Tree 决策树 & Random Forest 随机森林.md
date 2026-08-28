@@ -140,8 +140,6 @@ print(mean_absolute_error(val_y, val_prediction))
 # 输出：22583.184782798937
 ```
 用随机森林建模的模型，明显比刚刚用单颗决策树的预测准确度（MAE = 26860）来的好（取  max_leaf nodes 为 50 的 MAE）。因此，随机森林是一个很好用的机器模型算法。
-
-
 ## 总结
 ```mermaid
 graph TD

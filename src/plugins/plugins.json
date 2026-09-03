@@ -44,6 +44,14 @@
         "src/plugins/breadcrumbs/styles/trail.scss",
         "src/plugins/breadcrumbs/templates/trail.njk"
       ]
+    },
+    "dg-timestamps": {
+      "settings": {
+        "showCreated": true,
+        "showUpdated": true,
+        "timestampFormat": "yyyy MMM dd, h:mm a",
+        "dateFormat": "yyyy MMM dd"
+      }
     }
   }
 }

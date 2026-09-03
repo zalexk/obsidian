@@ -49,7 +49,15 @@
         "src/plugins/giscus-comments/README.md",
         "src/plugins/giscus-comments/garden-plugin.json",
         "src/plugins/giscus-comments/templates/comments.njk"
-      ]
+      ],
+      "settings": {
+        "repo": "zalexk/obsidian",
+        "repoId": "R_kgDOT-O31A",
+        "category": "Comments",
+        "categoryId": "DIC_kwDOT-O31M4DEyL5",
+        "theme": "preferred_color_scheme",
+        "showByDefault": true
+      }
     }
   }
 }

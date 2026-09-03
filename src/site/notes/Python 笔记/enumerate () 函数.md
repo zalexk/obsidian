@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/python/enumerate/","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/python/enumerate/","created":"2026-06-12T11:55:21.039+08:00","updated":"2026-08-20T14:24:21.573+08:00","dg-note-properties":{}}
 ---
 
 

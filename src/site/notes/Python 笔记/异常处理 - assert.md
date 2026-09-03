@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/python/assert/","tags":["Python异常处理"],"dg-note-properties":{"tags":["Python异常处理"]}}
+{"dg-publish":true,"permalink":"/python/assert/","tags":["Python异常处理"],"created":"2026-07-06T21:37:54.212+08:00","updated":"2026-08-20T14:23:49.155+08:00","dg-note-properties":{"tags":["Python异常处理"]}}
 ---
 
 >[!note] AI Usage Declaration

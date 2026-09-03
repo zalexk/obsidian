@@ -38,6 +38,18 @@
         "timestampFormat": "yyyy MMM dd, h:mm a",
         "dateFormat": "yyyy MMM dd"
       }
+    },
+    "giscus-comments": {
+      "repo": "oleeskild/garden-plugin-giscus-comments",
+      "installedVersion": "1.0.0",
+      "installedRef": "v1.0.0",
+      "installedAt": "2026-09-03T08:48:22.259Z",
+      "enabled": true,
+      "files": [
+        "src/plugins/giscus-comments/README.md",
+        "src/plugins/giscus-comments/garden-plugin.json",
+        "src/plugins/giscus-comments/templates/comments.njk"
+      ]
     }
   }
 }

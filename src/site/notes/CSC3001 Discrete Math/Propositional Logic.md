@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/csc-3001-discrete-math/propositional-logic/","created":"2026-09-07T16:08:30.377+08:00","updated":"2026-09-09T19:53:58.124+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/csc-3001-discrete-math/propositional-logic/","created":"2026-09-07T16:08:30.377+08:00","updated":"2026-09-09T20:07:40.727+08:00","dg-note-properties":{}}
 ---
 
 ## Introduction 引入
@@ -10,7 +10,7 @@
 ```mermaid
 graph LR
 a("program(input)") --> c(Halt)
-a --> b(Infinity loop)
+a --> b(Infinite loop)
 ```
 这里有两个程序：
 ```python
@@ -29,7 +29,7 @@ def mystep(n):
 ```
 第二个程序  `mystep`  便无法直接判断是否会 halt，因为 $n$ 不一定会出现 1 的值。
 
-**问题：** 世界上是否存在一个程序可以检测所输入的程序是 Halt 还是 Infinity loop
+**问题：** 世界上是否存在一个程序可以检测所输入的程序是 Halt 还是 Infinite loop
 #### Proof
 假如这个程序 `LoopChecker`  真的存在
 ```python
@@ -37,9 +37,9 @@ def LoopChecker(program, input):
 	if ...:
 		return "Halt"
 	else:
-		return "Infinity loop"
+		return "Infinite loop"
 ```
-那我们可以创建一个程序 `trouble` ，把 `LoopChecker` 的结果反过来，即如果程序是 halt 的，我就让它死循环，如果是 infinity loop 的，我就中断它。这个就是 proof by contradiction。
+那我们可以创建一个程序 `trouble` ，把 `LoopChecker` 的结果反过来，即如果程序是 halt 的，我就让它死循环，如果是 infinite loop 的，我就中断它。这个就是 proof by contradiction。
 ```python
 def trouble(program, input):
 	if LoopChecker(program, input) == "Halt":
@@ -142,9 +142,9 @@ $$
 | F   | F   | F   | **F**  | $\wedge \neg(\neg p\wedge \neg q\wedge \neg r)$ |
 The logic statement is 
 $$
-\neg (p\wedge q \wedge r) \wedge (\neg p \wedge q \wedge r) \wedge \neg(p\wedge q\wedge r)
+\neg (p\wedge q \wedge r) \wedge \neg (p \wedge \neg q \wedge \neg r) \wedge \neg(\neg p\wedge \neg q\wedge \neg r)
 $$
-The logic statement of [[CSC3001 Discrete Math/Propositional Logic#Idea 1 Focus on True Row\|#Idea 1 Focus on True Row]] and [[CSC3001 Discrete Math/Propositional Logic#Idea 2 Focus on False Row\|#Idea 2 Focus on False Row]] are logical equivalent.
+The logic statement of [[CSC3001 Discrete Math/Propositional Logic#Idea 1 Focus on True Row\|#Idea 1 Focus on True Row]] and [[CSC3001 Discrete Math/Propositional Logic#Idea 2 Focus on False Row\|#Idea 2 Focus on False Row]] are logically equivalent.
 
 ---
 ## Logical Rules
@@ -169,8 +169,8 @@ $$
 \begin{align*}
  L.H.S. &\equiv p \vee (p \wedge q) \\
  &\equiv (p\wedge \mathbf t)\vee (p\wedge q)\\
- &\equiv p\vee(\mathbf t \vee q)\\
- &\equiv p\vee \mathbf t\\
+ &\equiv p\wedge(\mathbf t \vee q)\\
+ &\equiv p\wedge \mathbf t\\
  &\equiv p\\
  &\equiv R.H.S.
 \end{align*}
@@ -192,7 +192,8 @@ $$
 \begin{align*}
 (p\wedge q)\vee (p\wedge \neg q) 
 &\equiv p\wedge (q\vee \neg q)\\
-&\equiv p\wedge \mathbf t
+&\equiv p\wedge \mathbf t\\
+&\equiv p
 \end{align*}
 $$
 3. Simplify $(p\wedge q)\vee (p\wedge q \wedge r)$
@@ -229,7 +230,8 @@ $$
 &\equiv p \wedge \mathbf t \vee (\neg p\wedge q)\\
 &\equiv p\vee (\neg p \wedge q)\\
 &\equiv (p\vee \neg p) \wedge (p\vee q)\\
-&\equiv \mathbf t \wedge (p\vee q)
+&\equiv \mathbf t \wedge (p\vee q)\\
+&\equiv p\vee q
 \end{align*}
 $$
 

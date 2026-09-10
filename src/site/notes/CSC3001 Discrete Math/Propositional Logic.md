@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/csc-3001-discrete-math/propositional-logic/","created":"2026-09-07T16:08:30.377+08:00","updated":"2026-09-09T20:07:40.727+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/csc-3001-discrete-math/propositional-logic/","created":"2026-09-07T16:08:30.377+08:00","updated":"2026-09-10T10:47:09.649+08:00","dg-note-properties":{}}
 ---
 
 ## Introduction 引入
@@ -98,6 +98,7 @@ $$
 | True  | False | **True**  | **True**            | **True**                                            |
 | False | True  | **True**  | **True**            | **True**                                            |
 | False | False | **False** | **True**            | **False**                                           |
+
 $(p\vee q )\wedge \neg(p\wedge q)$ 只是其中一种定义，只要你所写的定义返回的值跟 $\oplus$ 一致 (logical equivalence)，便是 $\oplus$ 的定义。
 
 > [!important]
@@ -124,6 +125,7 @@ $$
 | F   | T   | F   | **T**  | $\vee (\neg p \wedge q \wedge \neg r)$ |
 | F   | F   | T   | **T**  | $\vee (\neg p \wedge \neg q \wedge r)$ |
 | F   | F   | F   | F      |                                        |
+
 Hence, the logic statement is 
 $$
 (p\wedge q \wedge \neg r) \vee (p\wedge \neg q \wedge r) \vee(\neg p \wedge q \wedge r) \vee (\neg p \wedge q \wedge \neg r) \vee (\neg p \wedge \neg q \wedge r)
@@ -140,6 +142,7 @@ $$
 | F   | T   | F   | T      |                                                 |
 | F   | F   | T   | T      |                                                 |
 | F   | F   | F   | **F**  | $\wedge \neg(\neg p\wedge \neg q\wedge \neg r)$ |
+
 The logic statement is 
 $$
 \neg (p\wedge q \wedge r) \wedge \neg (p \wedge \neg q \wedge \neg r) \wedge \neg(\neg p\wedge \neg q\wedge \neg r)
@@ -164,6 +167,7 @@ The logic statement of [[CSC3001 Discrete Math/Propositional Logic#Idea 1 Focus 
 | De Morgan's laws（德摩根律）                 | 展开后 OR、AND 调转                                     | ${\neg}(p \wedge q) \equiv {\neg}p \vee {\neg}q$            | ${\neg}(p \vee q) \equiv {\neg}p \wedge {\neg}q$          |
 | Absorption laws（吸收律）                   | 括号内的结果无关大雅                                        | $p \vee (p \wedge q) \equiv p$                              | $p \wedge (p \vee q) \equiv p$                            |
 | Negations of **t** and **c**（永真／永假的否定） | $\mathbf t$ 和 $\mathbf c$ 是相反的                    | ${\neg}\mathbf{t} \equiv \mathbf{c}$                        | ${\neg}\mathbf{c} \equiv \mathbf{t}$                      |
+
 **Proof of Absorption law**
 $$
 \begin{align*}
@@ -251,6 +255,7 @@ It means
 | T   | F   | F        |
 | F   | T   | T        |
 | F   | F   | T        |
+
 只有当前提 hypothesis $P$ 为 TRUE ，且结论 $Q$ 是 FALSE 时，$P\to Q$ 才会是 FASLE
 如果前提 $P$ 本身为 FALSE 时，无论结论 $Q$ 如何，都是 TRUE
 
@@ -263,6 +268,7 @@ It means
 | T   | F   | F         |                              |
 | F   | T   | T         | $\vee (\neg P \wedge Q)$     |
 | F   | F   | T         | $\vee (\neg P\wedge \neg Q)$ |
+
 The logical formula is 
 $$
 \begin{align*}

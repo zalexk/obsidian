@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/csc-3001-discrete-math/propositional-logic/","created":"2026-09-07T16:08:30.377+08:00","updated":"2026-09-10T10:47:09.649+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/csc-3001-discrete-math/propositional-logic/","created":"2026-09-07T16:08:30.377+08:00","updated":"2026-09-12T01:32:01.993+08:00","dg-note-properties":{}}
 ---
 
 ## Introduction 引入
@@ -73,6 +73,7 @@ Logic operators are used to construct new statements from old statements
 | True  | False | **False**        | **True**   |
 | False | True  | **False**        | **True**   |
 | False | False | **False**        | **False**  |
+
 We can define logic operators on three or more statements, e.g.
 $$
 \overline{p\wedge q} \vee r

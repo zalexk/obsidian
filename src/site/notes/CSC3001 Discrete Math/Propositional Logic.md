@@ -1,9 +1,9 @@
 ---
-{"dg-publish":true,"permalink":"/csc-3001-discrete-math/propositional-logic/","created":"2026-09-07T16:08:30.377+08:00","updated":"2026-09-12T01:32:01.993+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/csc-3001-discrete-math/propositional-logic/","created":"2026-09-07T16:08:30.377+08:00","updated":"2026-09-14T22:09:40.371+08:00","dg-note-properties":{}}
 ---
 
 ## Introduction 引入
-### Turing's Halting Problems 停机问题
+### Turing's Halting Problem 停机问题
 所有计算机程序只有两个结局——
 - 停止：程序顺利执行完毕
 - 死循环
@@ -33,7 +33,7 @@ def mystep(n):
 #### Proof
 假如这个程序 `LoopChecker`  真的存在
 ```python
-def LoopChecker(program, input):
+def LoopChecker(program, inputs):
 	if ...:
 		return "Halt"
 	else:
@@ -41,12 +41,13 @@ def LoopChecker(program, input):
 ```
 那我们可以创建一个程序 `trouble` ，把 `LoopChecker` 的结果反过来，即如果程序是 halt 的，我就让它死循环，如果是 infinite loop 的，我就中断它。这个就是 proof by contradiction。
 ```python
-def trouble(program, input):
-	if LoopChecker(program, input) == "Halt":
+def trouble(program, inputs):
+	if LoopChecker(program, inputs) == "Halt":
 		while True: # 死循环
 			... 
 	else: 
 		return # 中断
+trouble(trouble, trouble) # 自相矛盾
 ```
 ---
 ## Logic and Basic Operators
@@ -115,7 +116,8 @@ $$
 1. 看 True 的行，撰写 logic statement，之后用 OR 连接
 2. 看 False 的行，撰写 logic statement 后用 AND 连接
 
-#### Idea 1: Focus on True Row
+#### Idea 1: Focus on True Row (DNF)
+
 | p   | q   | r   | output | Logic statement                        |
 | --- | --- | --- | ------ | -------------------------------------- |
 | T   | T   | T   | F      |                                        |
@@ -132,7 +134,9 @@ $$
 (p\wedge q \wedge \neg r) \vee (p\wedge \neg q \wedge r) \vee(\neg p \wedge q \wedge r) \vee (\neg p \wedge q \wedge \neg r) \vee (\neg p \wedge \neg q \wedge r)
 $$
 
-#### Idea 2: Focus on False Row
+#### Idea 2: Focus on False Row (CNF)
+For each False row, the logic statement must be False only for that specific inputs.
+
 | p   | q   | r   | output | Logic statement                                 |
 | --- | --- | --- | ------ | ----------------------------------------------- |
 | T   | T   | T   | **F**  | $\neg (p\wedge q \wedge r)$                     |
@@ -257,8 +261,10 @@ It means
 | F   | T   | T        |
 | F   | F   | T        |
 
-只有当前提 hypothesis $P$ 为 TRUE ，且结论 $Q$ 是 FALSE 时，$P\to Q$ 才会是 FASLE
+只有当前提 hypothesis $P$ 为 TRUE ，且结论 $Q$ 是 FALSE 时，$P\to Q$ 才会是 FALSE
 如果前提 $P$ 本身为 FALSE 时，无论结论 $Q$ 如何，都是 TRUE
+{ #b05206}
+
 
 #### Logical Formula for If-Then
 我们可以用 [[CSC3001 Discrete Math/Propositional Logic#Writing Logical Formula for a Truth Table\|#Writing Logical Formula for a Truth Table]] 的方式推导 If 的 logical formula 
@@ -290,7 +296,9 @@ $$
 \end{align*}
 $$
 > [!note]
-> 否定 $P\to Q$ 不是代表 $P \to Q$ 为 FALSE，而是 $P\to Q$ 不成立，即 $P\nrightarrow Q$
+> $\neg(P \to Q)$  表示 $P \to Q$  为 False。  
+> 要证明 $P \to Q$ 不成立，必须给出一个情况：$P$ 为 True，但 $Q$ 为  False。 
+
 ### Contrapositive 逆否命题
 The contrapositive of $p\to q$ is $\boxed{\neg q \to \neg p}$
 **Proof**
@@ -316,3 +324,136 @@ $$
 |  T  |  F  |           **F**           |     **F**     |          **F**          |
 |  F  |  T  |           **F**           |     **T**     |          **T**          |
 |  F  |  F  |           **T**           |     **T**     |          **T**          |
+
+---
+## Arguments
+Argument is a sequence of statements
+用数学符号表示为：
+$$
+\underbrace{P_{1}\wedge P_{2}\wedge\cdots\wedge P_{n}}_{\text{Assumptions / Premises}}\to\underbrace{Q}_{\text{Conclusion}}
+$$
+Argument is valid if whenever all the assumption are true, then the conclusion is true.
+> **Example**
+> 1. If it is raining, then I need an umbrella.
+> 2. It is raining.
+> $\therefore$ I need an umbrella
+
+> [!note] 
+> Argument 只关心当假设 assumption 为 TRUE  时，结论 conclusion 是否为 TRUE
+> 而并不关心事件 / statement 是 TRUE 还是 FALSE，即 assumption 可以为 False 且 conclusion 也变成 False。
+### Modus Ponens 肯定前件
+If $p$ then $q$, and $p$ is true, then $q$ is true.
+用数学公式写：
+$$
+\begin{align*}
+p\to q\\
+p\\
+\therefore q
+\end{align*}
+$$
+Equivalently, $(p\to q)\wedge p \to q$
+
+> [!note]
+> 单独一个字母出现在代表为 TRUE，如 $p,\neg q$ 是指 $p, \neg q$ 是 TRUE.
+
+在拉丁文中，Modus Ponens 意思是 method of affirming 肯定法
+### Modus Tollens
+$$
+\begin{align*}
+p\to q\\
+\neg q\\
+\therefore \neg p
+\end{align*}
+$$
+Equivalently, $(p\to q )\wedge \neg q \to \neg p$
+
+> **Example**
+> 1. If typhoon, then class cancels.
+> 2. Class does not cancel
+> $\therefore$ No typhoon
+
+在拉丁文中，Modus Tollens 意思是 method of denying 拒绝法
+
+### Invalid Arguments
+$$
+\begin{align*}
+p \to q\\
+q\\
+\therefore p
+\end{align*}
+$$
+
+这个例子就是弄混了 [[CSC3001 Discrete Math/Propositional Logic#IF-Then\|#IF-Then]] 的关系，$p\to q$ 并不代表 $q\to p$。
+$$
+\begin{align}
+p \to q \\
+\neg p \\
+\therefore \neg q
+\end{align}
+$$
+这个在 [[CSC3001 Discrete Math/Propositional Logic#IF-Then\|#IF-Then]] 中有详细说明（参见 [[CSC3001 Discrete Math/Propositional Logic#^b05206\|#^b05206]]）
+
+如果要证明 argument 是 invalid，只需要提出一个反例即可。
+
+Valid argument 并不代表是 true conclusion，例如如果 argument 的 assumption 是 FALSE 的，那 conclusion 就不一定是 TRUE。
+### Contradiction
+$$
+\begin{align}
+\neg p \to \mathbf c \\
+\therefore p
+\end{align}
+$$
+If assumption is true, then the conclusion is true.
+### Generalization
+$$
+\begin{align}
+p \\
+\therefore p\vee q \\
+ \\
+q\\
+\therefore p\vee q
+\end{align}
+$$
+### Specialization
+$$
+\begin{align}
+p\wedge q \\
+\therefore p \\
+ \\
+p\wedge q \\
+\therefore q
+\end{align}
+$$
+### Elimination
+$$
+\begin{align}
+p\vee q \\
+\neg q \\
+\therefore p \\
+ \\
+p\vee q \\
+\neg p \\
+\therefore q
+\end{align}
+$$
+### Transitivity
+$$
+\begin{align}
+p&\to q\\
+q &\to r\\ 
+\therefore p&\to r
+\end{align}
+$$
+> [!caution]
+> 如果第二行 $q$ 和 $r$ 交换，即 $r\to q$， argument 便不成立
+
+### Proof by Division into Cases
+$$
+\begin{align}
+p&\vee q \\
+p&\to r \\
+q &\to r \\
+\therefore &r
+
+\end{align}
+$$

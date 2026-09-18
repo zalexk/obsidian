@@ -1,10 +1,193 @@
-// /* 全局换成系统字体栈，不再请求任何 woff2 */
-// body, .markdown-preview-view, .markdown-rendered {
-//   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-//                "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB",
-//                sans-serif !important;
-// }
-// code, pre {
-//   font-family: "JetBrains Mono", "Cascadia Code", Consolas,
-//                "Courier New", monospace !important;
-// }
+/* ==========================================================================
+   Obsidian Digital Garden — Google Fonts 替换方案
+   --------------------------------------------------------------------------
+   用途：替换 obsidian-base.css 里那套自带 woff2（导致 404 的元凶），
+        改为从 Google Fonts 加载，彻底消除 /styles/public/fonts/*.woff2 404。
+
+   安装方法（二选一）：
+     A. 把本文件内容整段粘贴到 src/site/styles/custom-style.css 末尾
+     B. 把本文件另存为 src/site/styles/custom-fonts.css，
+        并在 custom-style.css 顶部加：@import "./custom-fonts.css";
+
+   注意：@import 必须写在 CSS 文件最顶部（任何规则之前），否则会被忽略。
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap");
+
+/* --------------------------------------------------------------------------
+   1. 设计令牌（改这里就能整体换风格）
+   -------------------------------------------------------------------------- */
+:root {
+  /* 正文：中文用 Noto Serif SC，西文优先 Lora（衬线，适合长文阅读） */
+  --font-body: "Lora", "Noto Serif SC", "Songti SC", "SimSun", serif;
+
+  /* 界面 / 标题：Inter + Noto Sans SC，干净利落 */
+  --font-ui: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+
+  /* 标题单独一套，想和正文区分就改这里 */
+  --font-heading: "Inter", "Noto Sans SC", -apple-system, sans-serif;
+
+  /* 代码 */
+  --font-mono: "JetBrains Mono", "Cascadia Code", "SFMono-Regular", Consolas,
+    "Liberation Mono", monospace;
+
+  /* 排版细节 */
+  --line-height-body: 1.75;
+  --line-height-heading: 1.3;
+  --letter-spacing-body: 0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   2. 正文 / 阅读区
+   -------------------------------------------------------------------------- */
+body,
+.markdown-preview-view,
+.markdown-rendered,
+.markdown-reading-view,
+.markdown-source-view.mod-cm6 .cm-content,
+.site-body,
+.content {
+  font-family: var(--font-body) !important;
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* 正文段落留一点呼吸感 */
+.markdown-rendered p,
+.markdown-preview-view p {
+  line-height: var(--line-height-body);
+}
+
+/* --------------------------------------------------------------------------
+   3. 标题层级
+   -------------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4,
+.markdown-rendered h5,
+.markdown-rendered h6 {
+  font-family: var(--font-heading) !important;
+  line-height: var(--line-height-heading);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* 一级标题更重一点，视觉锚点更强 */
+h1,
+.markdown-rendered h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   4. 界面元素：导航、侧边栏、按钮、标签
+   -------------------------------------------------------------------------- */
+nav,
+.navbar,
+.sidebar,
+.site-header,
+.site-footer,
+button,
+input,
+select,
+textarea,
+.file-tree,
+.graph-view,
+.search-result,
+.toc,
+.table-of-contents,
+.breadcrumb,
+.pagination,
+.tag,
+.tags,
+.internal-link,
+.external-link,
+.metadata,
+.frontmatter {
+  font-family: var(--font-ui) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. 代码：行内 + 代码块
+   -------------------------------------------------------------------------- */
+code,
+pre,
+kbd,
+samp,
+tt,
+.markdown-rendered code,
+.markdown-rendered pre,
+.markdown-preview-view code,
+.markdown-preview-view pre,
+.highlight,
+.highlight pre,
+.language-* {
+  font-family: var(--font-mono) !important;
+  font-variant-ligatures: none; /* JetBrains Mono 连字在网页上容易糊，关掉 */
+}
+
+/* 行内代码微调：字号略缩，避免中英混排时跳行 */
+.markdown-rendered code:not(pre code),
+.markdown-preview-view code:not(pre code) {
+  font-size: 0.88em;
+  padding: 0.15em 0.38em;
+  border-radius: 4px;
+}
+
+/* 代码块 */
+.markdown-rendered pre,
+.markdown-preview-view pre {
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
+   6. 辅助文字：日期、字数、脚注
+   -------------------------------------------------------------------------- */
+small,
+time,
+.footnote,
+.footnotes,
+.caption,
+figcaption,
+blockquote cite,
+.post-date,
+.reading-time {
+  font-family: var(--font-ui) !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. 关闭 obsidian-base.css 里残留的字体请求
+   --------------------------------------------------------------------------
+   如果你不方便删掉 obsidian-base.css 中的 @font-face 块，
+   可以保留本段 —— 它把字体族全部接管，
+   浏览器不会再为那些已被引用的 @font-face 发请求。
+   （已发出的请求无法撤回，所以控制台里旧缓存可能还报一次 404，
+     强制刷新 Ctrl+Shift+R 即可确认消失。）
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   8. 可选：如果你想把正文也改成无衬线（更现代、更接近网站风格）
+   --------------------------------------------------------------------------
+   把下面这段取消注释即可。衬线体更适合长文阅读，
+   无衬线更清爽 —— 看你个人偏好。
+   -------------------------------------------------------------------------- */
+
+/*
+body,
+.markdown-preview-view,
+.markdown-rendered {
+  font-family: var(--font-ui) !important;
+}
+*/

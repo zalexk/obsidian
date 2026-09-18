@@ -1,13 +1,10 @@
-body {
-    /***
-      ADD YOUR CUSTOM STYLING HERE. (INSIDE THE body {...} section.)
-      IT WILL TAKE PRECEDENCE OVER THE STYLING IN THE STYLE.CSS FILE.
-   ***/
-    //  background-color: white;
-    //  .content {
-    //   font-size: 14px;
-    //  }
-    //  h1 {
-    //   color: black;
-    //  }
+/* 全局换成系统字体栈，不再请求任何 woff2 */
+body, .markdown-preview-view, .markdown-rendered {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB",
+               sans-serif !important;
+}
+code, pre {
+  font-family: "JetBrains Mono", "Cascadia Code", Consolas,
+               "Courier New", monospace !important;
 }

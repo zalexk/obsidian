@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/algorithm/fibonacci-sequence/","created":"2026-09-17T23:17:18.847+08:00","updated":"2026-09-17T23:40:37.401+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/algorithm/fibonacci-sequence/","created":"2026-09-17T23:17:18.847+08:00","updated":"2026-09-18T18:09:27.977+08:00","dg-note-properties":{}}
 ---
 
 
@@ -41,6 +41,7 @@ def fib(n: int) -> int:
     
 print(fib(int(input())))
 ```
+把 $f(n-2)$ 赋值为 `prev` 、$f(n-1)$ 赋值为 `now`
 有一点需要注意的是，`prev, now = now, (prev + now) % MOD` 不可以分开写
 ``` python
 # 错误示范

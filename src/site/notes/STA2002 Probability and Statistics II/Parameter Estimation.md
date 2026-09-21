@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/parameter-estimation/","created":"2026-09-15T00:18:08.693+08:00","updated":"2026-09-20T18:14:57.817+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/parameter-estimation/","created":"2026-09-15T00:18:08.693+08:00","updated":"2026-09-22T01:16:24.221+08:00","dg-note-properties":{}}
 ---
 
 
@@ -260,10 +260,239 @@ Hence, $\hat \theta = \max_i \{x_i \}$, which is the min. point within the domai
 > $$
 > It means $L(\theta; X_1, \cdots, X_{n})$ achieves its max. value at $\hat \theta$
 
+---
+
+### Unbiased Estimator
+> [!important]
+> An estimator $u(X_1, X_2, \cdots, X_n)$ of $\theta$ is unbiased estimator of $\theta$ if
+> $$
+\mathbb E[u(X_1, X_{2}, \cdots, X_{n})] = \theta
+> $$
+> Otherwise, $u(X_1, X_2,\cdots, X_n)$ is biased estimator
+
+#### Example
+Calculate the MLE of normal distribution.
+$$
+\begin{align} \\
+X_{1},\cdots, X_{n} &\sim N(\underbrace{\theta_{1}}_{\mu}, \underbrace{\theta_{2}}_{\sigma^2})\\
+f(x;\theta)&= \frac{1}{\sqrt{2\pi \theta_{2}}} \exp\left[-\frac{(x-\theta_{1})^2}{2\theta_{2}} \right], \quad -\infty < x < \infty \\
+\theta \in \Omega &= \{(\theta_{1},\theta_{2}):-\infty<\theta_{1}<\infty， 0<\theta_{2} <\infty \} \\
+
+L(\theta_{1},\theta_{2}) &= \prod^n_{i=1}\frac{1}{\sqrt{2\pi \theta_{2}}} \exp\left[-\frac{(x-\theta_{1})^2}{2\theta_{2}} \right] \\
+&= \frac{1}{\left(\sqrt{2\pi \theta_{2}} \right)^n} \exp \left[- \frac{\sum_{i=1}^n (x_{i} - \theta_{1})^2}{2\theta_{2}} \right] \\
+\ell(\theta_{1}, \theta_{2}) &= -\frac{n}{2}\ln (2\pi \theta_{2}) - \frac{\sum_{i=1}^n (x_{i} - \theta_{1})^2}{2\theta_{2}} \\
+&= -\frac{n}{2}\ln (2\pi) - \frac{n}{2}\ln\theta_{2} - \frac{\sum_{i=1}^n (x_{i} - \theta_{1})^2}{2\theta_{2}} \\
+ \\
+\frac{\partial \ell(\theta_{1}, \theta_{2})}{\partial \theta_{1}} &= \frac{\sum_{i=1}^n (x_{i} - \theta_{1})}{\theta_{2}} \\
+0 &= \frac{\sum_{i=1}^n (x_{i} - \theta_{1})}{\theta_{2}} \\
+\sum_{i=1}^n (x_{i} - \theta_{1}) &= 0 \\
+\sum_{i=1}^n x_{i} - n\theta_{1} &= 0 \\
+\theta_{1} &= \frac{1}{n}\sum_{i=1}^n x_{i} \\
+\hat \theta_{1} &= \bar x \\
+ \\
+\frac{\partial \ell(\theta_{1}, \theta_{2})}{\partial \theta_{2}} &= \frac{\sum_{i=1}^n (x_{i} - \theta_{1})^2}{2\theta_{2}^2} - \frac{n}{2\theta_{2}} \\
+0 &= \frac{\sum_{i=1}^n (x_{i} - \theta_{1})^2}{2\theta_{2}^2} - \frac{n}{2\theta_{2}} \\
+n\theta_{2} &= \sum_{i=1}^n (x_{i} - \theta_{1})^2 \\
+\hat \theta_{2} &= \frac{1}{n} \sum_{i=1}^n (x_{i} - \theta_{1})^2 \\ \\
+
+&\begin{cases}
+\hat \theta_{1} &= \bar x \\
+\hat \theta_{2} &= \frac{1}{n} \sum_{i=1}^n (x_{i} - \theta_{1})^2
+\end{cases} \\
+-\frac{\partial^2 \ell(\theta_{1}, \theta_{2})}{\partial \theta_{1}\partial \theta_{2}} &= - \begin{bmatrix}
+\frac{\partial^2 \ell(\theta_{1}, \theta_{2})}{\partial \theta_{1}^2} & \frac{\partial^2 \ell(\theta_{1}, \theta_{2})}{\partial \theta_{2}\partial \theta_{1}} \\
+\frac{\partial^2 \ell(\theta_{1}, \theta_{2})}{\partial \theta_{1}\partial \theta_{2}} & \frac{\partial^2 \ell(\theta_{1}, \theta_{2})}{\partial \theta_{2}^2}
+\end{bmatrix} \\
+ 
+&\begin{cases}
+-\frac{\partial^2 \ell(\theta_{1}, \theta_{2})}{\partial \theta_{1}^2} &= \frac{n}{\theta_{2}} \\
+ \\
+-\frac{\partial^2 \ell(\theta_{1}, \theta_{2})}{\partial \theta_{2}\partial \theta_{1}} &= \frac{\sum^n_{i=1} x_{i}}{\theta_{2}^2}-\frac{n\theta_{1}}{\theta_{2}^2} = \frac{n(\bar x - \theta_{1})}{\theta_{2}^2} \\ \\
+
+\frac{\partial^2 \ell(\theta_{1}, \theta_{2})}{\partial \theta_{2}^2} &= -\frac{n}{2\theta_{2}^2} +\frac{\sum^n_{i=1}(x_{i} - \theta_{1})^2}{2\theta_{2}^3} 
+\end{cases} \\
+-\frac{\partial^2 \ell(\theta_{1}, \theta_{2})}{\partial \theta_{1}\partial \theta_{2}} & > 0 \\
+\therefore & \begin{cases} 
+\hat \theta_{1} &= \bar x \\
+\hat \theta_{2} &= \frac{1}{n} \sum_{i=1}^n (x_{i} - \theta_{1})^2
+\end{cases}
+\end{align}
+$$
+
+Given that sample variance  $S^2 = \frac{1}{n-1} \sum^n_{i=1} (X_i - \bar X)^2$
+Rewrite $\hat \theta_2$ as
+$$
+\begin{align}
+\hat \theta_{2} &= \frac{1}{n} \sum_{i=1}^n (x_{i} - \theta_{1})^2 \\
+&= \frac{n-1}{n} \left[\frac{1}{n-1} \sum^n_{i=1} (X_i - \bar X)^2\right] \\
+&= \frac{n-1}{n}S^2
+\end{align}
+$$
+Recall that
+$$
+\begin{align}
+\bar X &\sim N\left( \theta_1, \frac{\theta_2}{n} \right) \\
+\frac{(n-1)S^2}{\theta_{2}} &\sim \chi^2(n-1)
+\end{align}
+$$
+Hence,
+$$
+\begin{align}
+\mathbb E(\hat \theta_{1}) &= \mathbb E(\bar X) \\ 
+&= \mu \\
+&= \theta_{1} \\
+\mathbb E(S^2) &= \mathbb E \left\{ \left(\frac{\theta_{2}}{n-1}\right)\left[\frac{(n-1)S^2}{\theta_{2}} \right]\right\} \\
+&= \frac{\theta_{2}}{n-1} \mathbb E\left[\frac{(n-1)S^2}{\theta_{2}} \right] \\
+&= \frac{\theta_{2}}{n-1} \mathbb E\left[\chi^2(n-1) \right] \\
+&=\frac{\theta_{2}}{n-1} (n-1) \\
+&=\theta_{2} \\
+\mathbb E(\hat{\theta_{2}}) &= \frac{n-1}{n}\mathbb E(S^2) \\
+&= \frac{n-1}{n}\theta_{2}
+\end{align}
+$$
+Hence, $\hat \theta_1$ is unbiased estimator while $\hat \theta_2$ is biased estimator of $\theta_2$
+
+---
+### Method of Moments (MoM)
+As  MLE may not able to find an explicit formula for the max. value, it requires numerical optimization.
+
+For the unknown parameter $\theta = (\theta_1, \cdots, \theta_n)$ is $k$-dimensional.
+For $1\le j\le k$, denote the $j^{th}$ moment to be
+$$
+\alpha_{j} (\theta) = \mathbb E_{\theta} (X^j)
+$$
+
+Denote the $j^{th}$ sample moment to be
+$$
+\hat \alpha_{j} = \frac{1}{n} \sum^n_{i=1}X^j_{i}
+$$
+> [!important]
+> The method of moments estimator $\hat \theta$ is defined to be the value of $\theta$ s.t.
+> $$
+> \begin{align}
+> \alpha_{1}(\theta)&= \hat \alpha_{1} \\
+> \alpha_{2}(\theta)&= \hat \alpha_{2} \\
+> \vdots \\
+> \alpha_{k} (\theta) &= \hat \alpha_{k}
+> \end{align}
+> $$
+> It gives a system of $k$ equations with $k$ unkwown
+
+> [!note]
+> **为什么“矩”可以估计参数？**
+> 因为不同参数会让分布的理论平均值不同；观察到样本平均值后，就可以反推参数
+> - 如果 $\lambda=1$，Poisson 数据通常集中在 0、1、2。
+> - 如果 $\lambda=10$，Poisson 数据通常会在 10 附近。
+> - 如果样本均值是 1.6，我们自然会觉得 $\lambda$ 大概在 1.6 附近。
+> MoM 就是把这个直觉数学化：
+> $$
+>\text{理论平均} = \text{样本平均}
+> $$
 
 
+#### Example
+##### Gamma Distribution
+For $X_1,\cdots, X_n \sim \text{Gamma}(\theta_1,\theta_ 2)$. The unknown parameter is two-dimensional $\theta = (\theta_1,\theta_ 2)$.
+The first two moments are
+$$
+\begin{align}
+\alpha_{1}(\theta_{1}, \theta_{2}) &= \mathbb E_{\theta}(X_{1}) = \theta_{1}\theta_{2} \\
+\alpha_{2}(\theta_{1}, \theta_{2}) &= \mathbb E_{\theta}(X_{1}^2) = \theta_{1}\theta_{2} + \theta_{1}^2 \theta_{2}^2\\
+\end{align}
+$$
 
+The first two sample moments are
+$$
+\begin{align}
+\hat \alpha_{1} &= \frac{1}{n} \sum^n_{i=1} X_{i} \\
+\hat \alpha_{2} &= \frac{1}{n} \sum^n_{i=1} X_{i}^2
+\end{align}
+$$
 
+The $k^{th}$ moment $\alpha_{k} (\theta)$ is equal to $k^{th}$ sample moment $\hat \alpha_k$
+$$
+\begin{cases}
+\theta_{1}\theta_{2}&= \frac{1}{n} \sum^n_{i=1} X_{i} = \bar X \\
+\theta_{1}\theta_{2}^2 + \theta_{1}^2 \theta_{2}^2 &= \frac{1}{n} \sum^n_{i=1} X_{i}^2 
+\end{cases}
+$$
+
+$$
+\begin{align}
+\text{Let } V &= \frac{1}{n} \sum^n_{i=1}(X_i - \bar X)^2  \\
+&= \frac{1}{n}\sum^n_{i=1} (X^2_i - 2\bar X X_i + \bar X^2)  \\ \\
+&= \frac{1}{n}\left[ \sum^n_{i=1} (X^2_i)- 2 \sum^n_{i=1} \bar X X_{i} + n\bar X^2\right] \\
+&=\frac{1}{n}\sum^n_{i=1} (X^2_i)- 2 \bar X^2  + \bar X^2\\
+&= \frac{1}{n} \sum^n_{i=1}X_i^ 2 - \bar X^2
+\end{align}
+$$
+
+Sub. $\theta_{1}\theta_{2}$ into $\theta_{1}\theta_{2}^2 + \theta_{1}^2 \theta_{2}^2$,
+$$
+\begin{align}
+\bar X \theta_{2} + \bar X^2 &= \frac{1}{n} \sum^n_{i=1} X_{i}^2 \\
+\bar X \theta_{2} &= V\\ \\
+\theta_{2} &= \frac{V}{\bar X}\\ \\
+\theta_{1}\theta_{2}&= \bar X \\
+\theta_{1}\frac{V}{\bar X}&= \bar X \\
+\theta_{1} &= \frac{\bar X^2}{V}
+\end{align}
+$$
+Hence, the method of moments estimators are
+$$
+\begin{cases}
+\tilde \theta_{1} &= \frac{\bar X^2}{V} \\
+\tilde \theta_{2} &= \frac{V}{\bar X} 
+\end{cases}
+$$
+##### Poisson Distribution
+$$
+\begin{align}
+X_{1},\cdots, X_{n}&\sim P(\lambda) \\
+\alpha_{1}(\lambda) &= E(X) \\
+&=\lambda \\ 
+\hat \alpha_{1} &= \frac{1}{n} \sum^n_{{i=1}}X_{i} \\
+&= \bar X \\
+\alpha_{1}(\lambda) &= \hat \alpha_{1} \\ \\
+\lambda &=\bar X\\
+\tilde \lambda_{1} &=\bar X
+\end{align}
+$$
+MoM estimator is not unique for Poisson distribution, i.e. second-moment estimator
+$$
+\begin{align}
+E(X^2) &= E(X^2) - [E(X)]^2 + [E(X)]^2 \\
+&=Var(X) + [E(X)]^2  \\
+&= \lambda + \lambda^2 \\
+ 
+\lambda&= E(X^2) - \lambda^2 \\
+&= E(X^2) - [E(X)]^2 \\
+&= \frac{1}{n}\sum_{i=1}^n X^2_{i} - \bar X^2 \\
+\tilde \lambda_{2}&=\frac{1}{n}\sum_{i=1}^n X^2_{i} - \bar X^2
+\end{align}
+$$
+> [!note]
+> Mean-based estimator $\tilde \lambda_1 = \bar X$  is preferred because of smaller variance.
+##### Uniform Distribution
+$$
+\begin{align} \\
+X_{1},\cdots, X_{n} &\sim U(0,\theta)\\
+ \alpha(\theta) &= E(X) \\
+ &= \frac{\theta}{2} \\
+ \hat \alpha &= \frac{1}{n}\sum^n_{i=1}X_{i} \\
+ &= \bar X \\
+ \frac{\theta}{2}&=\bar X \\
+\tilde \theta &= 2\bar X
+\end{align}
+$$
+> [!note]
+> $\tilde \theta$ may not be a good estimator if
+> $$
+> 2\bar X < \max \{X_{1},\cdots, X_{n} \}
+> $$
+> As in uniform distribution $U(0,\theta)$, all data are in $(0,\theta)$.
+> Hence, $\theta$ should be larger than $\max_i \{X_i \}$.
+> If $\underbrace{2\bar X}_{\tilde \theta} < \max \{X_{1},\cdots, X_{n} \}$, it is contradiction.
 
 
 

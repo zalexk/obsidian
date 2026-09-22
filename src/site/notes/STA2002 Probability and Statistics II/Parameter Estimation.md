@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/parameter-estimation/","created":"2026-09-15T00:18:08.693+08:00","updated":"2026-09-22T01:16:24.221+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/parameter-estimation/","created":"2026-09-15T00:18:08.693+08:00","updated":"2026-09-22T23:42:23.685+08:00","dg-note-properties":{}}
 ---
 
 
@@ -253,7 +253,8 @@ $$
 The domain of $L(\theta)$ now becomes $\theta \in [\max_i x_{i}, \infty)$. 
 Hence, $\hat \theta = \max_i \{x_i \}$, which is the min. point within the domain.
 
-> [!important]
+> [!important] Definition
+> **Maximum Likelihood Estimator**
 > $\hat \theta = \hat \theta(X_1,\cdots, X_n)$ is MLE of $\theta$ if 
 > $$
 > \hat \theta = \arg \max L(\theta; X_1, \cdots, X_{n})
@@ -263,7 +264,7 @@ Hence, $\hat \theta = \max_i \{x_i \}$, which is the min. point within the domai
 ---
 
 ### Unbiased Estimator
-> [!important]
+> [!important] Definition
 > An estimator $u(X_1, X_2, \cdots, X_n)$ of $\theta$ is unbiased estimator of $\theta$ if
 > $$
 \mathbb E[u(X_1, X_{2}, \cdots, X_{n})] = \theta
@@ -366,7 +367,8 @@ Denote the $j^{th}$ sample moment to be
 $$
 \hat \alpha_{j} = \frac{1}{n} \sum^n_{i=1}X^j_{i}
 $$
-> [!important]
+> [!important] Definition
+> **Method of Moments Estimator**
 > The method of moments estimator $\hat \theta$ is defined to be the value of $\theta$ s.t.
 > $$
 > \begin{align}

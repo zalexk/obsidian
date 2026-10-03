@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/csc-3001-discrete-math/sets/","created":"2026-09-14T22:11:36.124+08:00","updated":"2026-10-04T02:03:05.226+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/csc-3001-discrete-math/sets/","created":"2026-09-14T22:11:36.124+08:00","updated":"2026-10-04T02:09:14.967+08:00","dg-note-properties":{}}
 ---
 
 ## Basic Definition
@@ -112,9 +112,9 @@ $$
 > [!important] Definition
 > A collection of non-empty sets $\{A_1, \cdots, A_n\}$ is a partition of a set $A \iff$
 > - $A = A_1 \cup A_2\cup \cdots \cup A_n$
-> - $A_1 \cup A_2\cup \cdots \cup A_n$ are mutually disjoint / pairwise disjoint
+> - $A_1, A_2, \cdots , A_n$ are mutually disjoint / pairwise disjoint
 
-![content.png](/img/user/content.png)
+![partitions of sets.png](/img/user/%E9%99%84%E4%BB%B6/partitions%20of%20sets.png)
 ### Cartesian Products
 > [!Important] Definition
 > Given 2 sets $A$ and $B$, the Cartesian product $A\times B$ is the set of all ordered pairs $(a,b)$, where $a\in A, b\in B$
@@ -204,7 +204,7 @@ $$
 ---
 ## Russell's Paradox 罗素悖论
 > [!caution]
-> 一下内容由 AI 基于 Lecture Note 撰写，作者仅进行小幅度的修改。
+> 以下内容由 AI 基于 Lecture Note 撰写，作者仅进行小幅度的修改。
 
 
 $$

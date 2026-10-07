@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/csc-3001-discrete-math/first-order-logic/","created":"2026-10-04T11:20:46.455+08:00","updated":"2026-10-06T12:49:31.664+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/csc-3001-discrete-math/first-order-logic/","created":"2026-10-04T11:20:46.455+08:00","updated":"2026-10-07T13:49:56.835+08:00","dg-note-properties":{}}
 ---
 
 ## Quantifiers
@@ -65,7 +65,7 @@ e.g. Not exists a plant that can fly = every plant cannot fly
 | 维度       | **命题 A** (普遍量化优先)                                                      | **命题 B** (存在量化优先)                                                       |
 | -------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | **自然语言** | “防病毒软件杀所有计算机病毒” <br>(Each virus has a killer)                          | “存在一个杀软能干掉所有病毒” <br>(One killer kills everything)                       |
-| **逻辑公式** | $$ \forall v \cdot \exists a \cdot \text{kills}(a,v) $$                | $$ \exists a \cdot \forall v \cdot \text{kills}(a,v) $$                 |
+| **逻辑公式** | $\forall v \cdot \exists a \cdot \text{kills}(a,v)$                    | $\exists a \cdot \forall v \cdot \text{kills}(a,v)$                     |
 | **约束范围** | **弱约束**。  <br>($\exists$ 在外层受 $\forall$ 支配)  <br>只要对当前 $v$ 能找到 $a$ 就行。 | **强约束**。  <br>($\forall$ 在内层被 $\exists$ 锁死)  <br>选定后的 $a$ 必须对所有 $v$ 有效。 |
 Hence, order of quantifiers is important.
 

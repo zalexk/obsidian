@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-10-13T01:56:02.007+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-10-13T02:04:36.773+08:00","dg-note-properties":{}}
 ---
 
 
@@ -31,7 +31,7 @@
 | $\mu = 50$   | $\mu = 55$   | Simple vs Simple       | 只关心两个精准数值      |
 | $\mu = 55$   | $\mu > 55$   | 单侧 One-sided（右尾）       | 只关心"**有没有变大**" |
 | $\mu = 55$   | $\mu < 55$   | 单侧 One-sided（左尾）       | 只关心"**有没有变小**" |
-| $\mu = 55$   | $\mu \ne 55$ | 双侧 One-sided（双尾）       | 变大变小**都算异常**   |
+| $\mu = 55$   | $\mu \ne 55$ | 双侧 Two-sided（双尾）       | 变大变小**都算异常**   |
 | $\mu \le 55$ | $\mu > 55$   | Composite vs Composite | 覆盖全部数值         |
 
 ### Critical Region $C$ and Test Statistic $T$
@@ -43,7 +43,7 @@ Hypothesis testing is based on critical region $C$, which is subset of $\mathcal
 - Reject $H_0$ (accept $H_1$) if $(x _1,x_ 2,\cdots,x_n) \in C$
 - Fail to reject $H_0$ (reject $H_1$) if $(x _1,x_ 2,\cdots,x_n) \notin C$
 > [!tip]
-> **临界域 $C$ 是 $\mathcal{D}$ 的一个子集：**只要实际抽到的样本落在 $C$ 里，就拒绝原假设 $H_0$（null hypothesis）；没落在里面，就不拒绝。
+> **临界域 $C$ 是 $\mathcal{D}$ 的一个子集：** 只要实际抽到的样本落在 $C$ 里，就拒绝原假设 $H_0$（null hypothesis）；没落在里面，就不拒绝。
 > $$
 > \text{样本} \in C \;\Rightarrow\; \text{拒绝 } H_0 \qquad \text{样本} \notin C \;\Rightarrow\; \text{不拒绝 } H_0
 > $$

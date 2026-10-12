@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-10-13T01:55:35.799+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-10-13T01:56:02.007+08:00","dg-note-properties":{}}
 ---
 
 
@@ -77,6 +77,7 @@ $$
 | ----------------- | ------------------------- | ------------------------- |
 | 报告"阳性"（拒绝 $H_0$）  | 误报（false positive）= 第一类错误 | 命中                        |
 | 报告"阴性"（不拒绝 $H_0$） | 命中                        | 漏报（false negative）= 第二类错误 |
+
 #### Example
 > $X_1, \dots, X_n \overset{i.i.d.}{\sim} N(\mu, 36)$，$n=16$
 > Take critical region $C = \{ \bar x \ge 53 \}$.

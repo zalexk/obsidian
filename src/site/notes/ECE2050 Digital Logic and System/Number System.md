@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/ece-2050-digital-logic-and-system/number-system/","created":"2026-09-22T13:46:20.046+08:00","updated":"2026-10-13T15:56:51.887+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/ece-2050-digital-logic-and-system/number-system/","created":"2026-09-22T13:46:20.046+08:00","updated":"2026-10-13T17:31:41.223+08:00","dg-note-properties":{}}
 ---
 
 
@@ -148,19 +148,7 @@ $$
 > 		2. 由于 fraction bit 是 23-bit 长，因此要填充 $0$，因此为 $110\;0100\;0000\;0000\;0000\;0000$
 > 
 > 因此，$228 = 0\;10000110\;11001000000000000000000$
-> ``` mermaid
-> flowchart TD
->     A["十进制数 228"] --> B["① 转二进制<br/>11100100"]
->     B --> C["② 规格化<br/>1.1100100 × 2^7"]
->     C --> D1["③a 符号 = 0"]
->     C --> D2["③b 指数 = 7 + 127 = 134<br/>= 10000110"]
->     C --> D3["③c 尾数 = 1100100<br/>补0到23位"]
->     D1 --> E["④ 拼接<br/>0 10000110 1100100..."]
->     D2 --> E
->     D3 --> E
->     style A fill:#f4b942,stroke:#fff,color:#1b1b1b
->     style E fill:#4a7fb5,stroke:#fff,color:#1b1b1b
-> ```
+
 
 > [!note] Example
 > Write -58.25 in floating point

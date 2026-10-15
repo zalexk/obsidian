@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-10-15T15:28:21.360+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-10-15T15:40:23.272+08:00","dg-note-properties":{}}
 ---
 
 
@@ -627,3 +627,4 @@ Decision rules: Reject $H_0$ at significance level $\alpha$ when either
 | **Welch**  | 独立   | $\sigma_X^2\ne\sigma_Y^2$ | $\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}}$ | $r$（修正） | 独立且方差不等 |
 | **Paired** | 配对   | 只看差值 $D$                  | $\frac{S_D}{\sqrt n}$                    | $n-1$   | 同一批人测两次 |
 
+![t-test-one-table.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/t-test-one-table.png)

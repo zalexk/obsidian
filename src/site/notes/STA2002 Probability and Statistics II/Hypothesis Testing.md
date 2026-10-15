@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-10-13T02:04:36.773+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-10-15T15:28:21.360+08:00","dg-note-properties":{}}
 ---
 
 
@@ -24,7 +24,7 @@
 - **Simple null hypothesis $H_0$:** $\mu = 50$
 - **Simple alternative hypothesis $H_1$:** $\mu = 55$
 - **Composite null hypothesis $H_0$:** $\mu \le 50$
-- **Composite alternative hypothesis $H_1$:** $\mu >55$
+- **Composite alternative hypothesis $H_1$:** $\mu >50$
 
 | $H_0$        | $H_1$        | Types                  | 直觉解释           |
 | ------------ | ------------ | ---------------------- | -------------- |
@@ -110,7 +110,7 @@ $$
 > [!tip]
 > 即便真实均值是 55，仍有约 9.12% 的概率没跨过 53 而漏报
 
-![Error in Hypothesis Testing.png](/img/user/%E9%99%84%E4%BB%B6/Error%20in%20Hypothesis%20Testing.png)
+![Error in Hypothesis Testing.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/Error%20in%20Hypothesis%20Testing.png)
 
 > [!note]
 > By changing critical region $C$, $\alpha$ and $\beta$ change in different direction (i.e. $\alpha \uparrow \beta \downarrow$).
@@ -131,7 +131,7 @@ $$
 \begin{align}
 \Pr\left( Z \ge \frac{c-50}{\sqrt{2.25}} \right) &= 0.05 \\
 \frac{c-50}{\sqrt{2.25}} &= z_{0.05} \\
-c &= 52.48
+c &= 52.47
 \end{align}
 $$
 
@@ -147,7 +147,7 @@ $$
 > - $\alpha = 0.05$ 不是"$H_0$ 有 5% 的概率为真"，而是"假如 $H_0$ 为真，我们错误拒绝它的概率是 5%"。  
 > - $z_{0.05}$ 的记号指右尾面积为 0.05，查表时别和 $\Phi(z)=0.05$（左尾）搞混。因为 $\Phi(1.645) = 0.95$，所以右尾才是 0.05。  
 > - 拒绝域方向由 $H_1$ 决定：$H_1: \mu > 50$ → 右尾；$H_1: \mu < 50$ → 左尾；$H_1: \mu \ne 50$ → 双尾（$\alpha$ 平分两边）。
-> ![Normal distribution in left and right tail.png](/img/user/%E9%99%84%E4%BB%B6/Normal%20distribution%20in%20left%20and%20right%20tail.png)
+> ![Normal distribution in left and right tail.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/Normal%20distribution%20in%20left%20and%20right%20tail.png)
 
 ### $p$-value: Observed Significance Level
 **$p$-value:** If $H_0$ is true, the probability of observing a more extreme test statistic (favour $H_1$)
@@ -235,7 +235,7 @@ $$
 p = \Pr(T>z; H_{0}) = \Pr(Z>z)
 \end{aligned}
 $$
-- Reject $H_0$ when either
+- Reject $H_0$ at significance level $\alpha$ when either
 	- **$p$-value approach:** $p\le \alpha$ OR
 	- **Critical region approach:** $z\ge z_\alpha$ OR
 	- **Confidence interval approach:** $\mu_0 \notin \left( \bar x - z_{\alpha} \frac{\sigma}{\sqrt{n}}, \infty \right)$
@@ -246,23 +246,24 @@ $$
 $$
 p = \Pr(T< z;H_{0}) = \Pr(Z<z)
 $$
-Reject $H_0$ when either
+Reject $H_0$ at significance level $\alpha$ when either
 - $p\le \alpha$ OR
 - $z\le - z_\alpha$ OR
 - $\mu_{0} \notin \left( -\infty, \bar x + z_{\alpha}\frac{\sigma}{\sqrt{n}} \right)$
+
 **For two-sided test** $H_0: \mu = \mu_{0}, \ H_{1} : \mu \ne \mu_{0}$
 $$
 \begin{aligned}
 p &= \Pr(|T| > |z|; H_{0}) \\
-&= \Pr(Z>|z|) + \Pr(Z<|z|) \\
+&= \Pr(Z>|z|) + \Pr(Z<-|z|) \\
 &=2\Pr(Z>|z|) 
 \end{aligned}
 $$
-Reject $H_0$ when either
+Reject $H_0$ at significance level $\alpha$ when either
 - $p\le\alpha$ OR
 - $|z| \ge z_{\frac{\alpha}{2}}$ OR
 - $\mu_0 \notin \left( \bar x - z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}, \bar x + z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}\right)$
-![z-curve.png](/img/user/%E9%99%84%E4%BB%B6/z-curve.png)
+![z-curve.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/z-curve.png)
 ### Case 2: $\sigma^2$ Unknown
 When $\sigma^2$ is unknown, replace standard normal distribution by $t$-distribution with degree of freedom $(n-1)$ and $\sigma^2$ by $S^2$ in [[STA2002 Probability and Statistics II/Hypothesis Testing#Case 1 $ sigma 2$ Known\|#Case 1 $ sigma 2$ Known]]
 
@@ -275,23 +276,26 @@ Once data $x_1,\cdots, x_n$ are observed, we can compute
 $$
 t = \frac{\bar x - \mu_{0}}{\frac{s}{\sqrt{n}}}
 $$
+
 **For the one-sided test** $H_0 :\mu = \mu_0, \ H_1:\mu \boxed> \mu_0$
 $$
 p = \Pr(T>t; H_{0}) = \Pr(T>t; T\sim t(n-1))
 $$
-Reject $H_0$ when either
+Reject $H_0$ at significance level $\alpha$  when either
 - $p\le \alpha$ OR
 - $t\ge t_{\alpha} (n-1)$ OR
 - $\mu_0 \notin \left( \bar x - t_{\alpha}(n-1) \frac{s}{\sqrt{n}}, \infty \right)$
+
 **For the one-sided test** $H_0:\mu=\mu_ 0, \ H_1 : \mu \boxed<\mu_0$
 $$
 p = \Pr(T<t; T\sim t(n-1))
 $$
-Reject $H_0$ when either
+Reject $H_0$ at significance level $\alpha$ when either
 - $p\le \alpha$ OR
 - $t\le - t_\alpha (n-1)$
 - $\mu_0\notin \left( -\infty, \bar x + t_{\alpha}(n-1) \frac{s}{\sqrt{n}}\right)$
-**For the one-sided test** $H_0 : \mu = \mu_0, \ H_1:\mu \ne \mu_0$
+
+**For the two-sided test** $H_0 : \mu = \mu_0, \ H_1:\mu \ne \mu_0$
 $$
 \begin{aligned}
 p &= \Pr(|T|>|t|; H_{0}) \\
@@ -299,7 +303,7 @@ p &= \Pr(|T|>|t|; H_{0}) \\
 &= 2\Pr(T>|t|; T\sim t(n-1))
 \end{aligned}
 $$
-Reject $H_0$ when either
+Reject $H_0$ at significance level $\alpha$ when either
 - $2\Pr(T>|t|; T\sim t(n-1))\le \alpha$
 - $|t|\ge t_{\frac{\alpha}{2}} (n-1)$
 - $\mu_0 \notin \left( \bar x - t_{\frac{\alpha}{2}}(n-1) \frac{s}{\sqrt{n}}, \bar x + t_{\frac{\alpha}{2}}(n-1) \frac{s}{\sqrt{n}} \right)$
@@ -321,7 +325,7 @@ t_{\frac{0.10}{2}}(9-1) &= t_{0.05}(8) \\
 \text{Critical region approach: } |t| &= 0.75  \\
 &\le 1.86 \\
 \text{Confidence interval approach: } 4.3\pm 1.86\left( \frac{1.2}{\sqrt{9}} \right) &= [3.556, 5.044] \\
-4 &\in [3.556, 5.0044]
+4 &\in [3.556, 5.044]
 \end{aligned}
 $$
 Hence, we fail to reject $H_0$ at 10% significance level
@@ -345,4 +349,281 @@ t_{0.01}(24) &= 2.492 \\
 \end{aligned}
 $$
 
-![Hypothesis testing for one mean.png](/img/user/%E9%99%84%E4%BB%B6/Hypothesis%20testing%20for%20one%20mean.png)
+![Hypothesis testing for one mean.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/Hypothesis%20testing%20for%20one%20mean.png)
+## Test Equality of Two Normal Means
+**Settings**
+- 2 populations with i.i.d. samples
+	- $X_1, \cdots, X_n \sim N(\mu_{X}, \sigma_{X}^2)$
+	- $Y_1, \cdots, Y_m \sim N(\mu_{Y}, \sigma_{Y}^2)$
+- Test $H_0:\mu_X = \mu_Y$ versus $H_1$
+**3 cases:**
+- Pooled $t$-test
+	- $X_1, \cdots, X_n$ and $Y_1, \cdots, Y_m$ are independent
+	- $\sigma_X^2 = \sigma_Y^2 = \sigma^2$ are unknown
+- Welch's $t$-test
+	- $X_1, \cdots, X_n$ and $Y_1, \cdots, Y_m$ are independent
+	- $\sigma_X^2 \ne \sigma_Y^2$ are unknown
+- Paired $t$-test
+	- $n=m$ and $(X_i, Y_i)$ are independent pairs
+### Pooled $t$-test
+Consider the pooled $t$-test statistic
+$$
+T:= \frac{\bar X - \bar Y}{S_{p}\sqrt{\frac{1}{n} + \frac{1}{m}}}
+$$
+The pooled variance $S_p^2$ is 
+$$
+S^2_{p} = \frac{(n-1)S^2_{X} + (m-1)S^2_{Y}}{n+m-2}
+$$
+Under $H_0:\mu_X = \mu_Y$, $T\sim t(n+m-2)$
+
+Once data $x_1 , \cdots, x_n$ and $y_1, \cdots, y_m$ is observed, we can compute
+$$
+t = \frac{\bar x - \bar y}{s_{p} \sqrt{\left( \frac{1}{n} + \frac{1}{m} \right)}}
+$$
+
+**For one-sided test** $H_0:\mu_X = \mu_Y$ versus $H_1: \mu_X \boxed{>} \mu_Y$
+$p$-value is 
+$$
+\begin{aligned}
+p &= \Pr(T>t; H_{0})  \\
+&= \Pr(T>t; T\sim t(n+m-2))
+\end{aligned}
+$$
+Decision rules: Reject $H_0$ at significance level $\alpha$ when either
+- $p \le \alpha$ OR
+- $t\ge t_\alpha (n+m-2)$ OR
+- $0\notin \left( \bar x - \bar y - t_\alpha (n+m-2) s_{p} \sqrt{\frac{1}{n} + \frac{1}{m}}, \infty \right)$
+
+
+**For one-sided test** $H_0:\mu_{X} = \mu_{Y}$ versus $H_1:\mu_X \boxed{<} \mu_Y$
+$p$-value is 
+$$
+\begin{aligned}
+p &= \Pr(T<t; H_{0}) \\
+&= \Pr(T<t; T\sim t(n+m-2))
+\end{aligned}
+$$
+Decision rules: Reject $H_0$ at significance level $\alpha$ when either
+- $p\le \alpha$ OR
+- $t\le -t_\alpha(n+m-2)$ OR
+- $0\notin \left( -\infty, \bar x - \bar y + t_{\alpha} (n+m-2) s_{p} \sqrt{\frac{1}{n} + \frac{1}{m}} \right)$
+
+
+**For two-sided test** $H_0 : \mu_{X} = \mu_{Y}$ versus $H_1:\mu_X \ne \mu_Y$
+$p$-value is 
+$$
+\begin{aligned}
+p &= \Pr(|T| > |t|; H_{0}) \\
+&= 2\Pr(T>|t|; T\sim t(n+m-2))
+\end{aligned}
+$$
+Decision rules: Reject $H_0$ at significance level $\alpha$  when either
+- $p\le \alpha$
+- $|t|\ge t_{\frac{\alpha}{2}} (n+m-2)$
+- $0\notin \left( \bar x - \bar y - t_{\frac{\alpha}{2}} s_{p} \sqrt{\frac{1}{n} + \frac{1}{m}}, \bar x - \bar y + t_{\frac{\alpha}{2}}s_{p} \sqrt{\frac{1}{n} + \frac{1}{m}} \right)$
+
+> [!note]
+> $$
+> \left( \bar x - \bar y - t_{\frac{\alpha}{2}} s_{p} \sqrt{\frac{1}{n} + \frac{1}{m}}, \bar x - \bar y + t_{\frac{\alpha}{2}}s_{p} \sqrt{\frac{1}{n} + \frac{1}{m}} \right) \equiv (\bar x - \bar y) \pm t_{\frac{\alpha}{2}} s_{p} \sqrt{\frac{1}{n} + \frac{1}{m}}
+> $$
+> It is just a two-sided pooled $t$-interval (ref. to [[STA2002 Probability and Statistics II/Confidence Interval#Case 1 Pooled $t$-interval\|Confidence Interval#Case 1 Pooled $t$-interval]])
+
+#### Example
+> Suppose $X\sim N(\mu_X, \sigma^2)$ and $Y\sim N(\mu_Y, \sigma^2)$. 
+> Observe that 
+> $$
+ \begin{aligned}
+ n &= 12, \quad   &\bar x = 1076.75, \quad  &s_{X}^2  = 29.30\\ 
+ m &= 12, \quad &\bar y = 1072.33, \quad &s_{Y}^2 = 26.24
+ \end{aligned}
+ $$
+ > We would like to test $H_0 : \mu_X = \mu_Y$ versus $H_1:\mu_X \ne \mu_Y$ at significance level $\alpha = 0.10$
+ 
+ Compute test statistic
+$$
+\begin{aligned}
+t &= \frac{1076.75 - 1072.33}{\sqrt{\frac{11(29.3) + 11(26.24)}{12+12-2}} \sqrt{\frac{1}{12} + \frac{1}{12}}} \\
+&= 2.05 \\
+t_{\frac{0.10}{2}}(12+12-2) &= t_{0.05}(22) \\
+&= 1.717 \\
+&< |t| 
+\end{aligned}
+$$
+Hence, reject $H_0$ at $10\%$ significant level.
+### Welch's $t$-test
+Consider the Welch's $t$-test statistic
+$$
+T = \frac{\bar X - \bar Y}{\sqrt{\frac{S^2_{X}}{n} + \frac{S^2_{Y}}{m}}}
+$$
+Under $H_0$, $T \sim t(r)$ approximately with
+$$
+r = \left\lfloor  
+\frac{\left( \frac{S^2_{X}}{n} + \frac{S^2_{Y}}{m} \right)^2}
+{\frac{1}{n-1}\left( \frac{S^2_{X}}{n} \right)^2 + \frac{1}{m-1} \left( \frac{S^2_{Y}}{m} \right)^2}
+ \right\rfloor 
+$$
+Once data $x_1,\cdots, x_n$ and $y_1,\cdots, y_m$, we can compute
+$$
+t = \frac{\bar x - \bar y}{\sqrt{\frac{s_{X}^2}{n} + \frac{s_{Y}^2}{m}}} 
+$$
+
+**For two-sided test** $H_0: \mu_{X} = \mu_{Y}$ versus $H_1:\mu_X \ne \mu_Y$
+$p$-value is 
+$$
+\begin{aligned}
+p &= \Pr(|T|>|t|; H_{0}) \\
+&= 2\Pr(T>|t|; T\sim t(r))
+\end{aligned}
+$$
+Decision rules: Reject $H_0$ at significance level $\alpha$ when either
+- $p \le \alpha$ OR
+- $|t| \ge t_{\frac{\alpha}{2}}(r)$ OR
+- $0 \notin \left( \bar x - \bar y - t_{\frac{\alpha}{2}}(r) \sqrt{\frac{s^2_{X}}{n} + \frac{s^2_{Y}}{m}}, \bar x - \bar y + t_{\frac{\alpha}{2}}(r) \sqrt{\frac{s^2_{X}}{n} + \frac{s^2_{Y}}{m}} \right)$
+
+> [!note]
+> $$
+> \left( \bar x - \bar y - t_{\frac{\alpha}{2}}(r) \sqrt{\frac{s^2_{X}}{n} + \frac{s^2_{Y}}{m}}, \bar x - \bar y + t_{\frac{\alpha}{2}}(r) \sqrt{\frac{s^2_{X}}{n} + \frac{s^2_{Y}}{m}} \right) \equiv \bar x - \bar y \pm t_{\frac{\alpha}{2}}(r) \sqrt{\frac{s^2_{X}}{n} + \frac{s^2_{Y}}{m}}
+> $$
+> It is just the Welch's $t$-interval.
+
+### Paired $t$-test
+Consider the following two-sided test
+$$
+H_{0} :\mu_{X} = \mu_{Y}, \quad H_{1}:\mu_{X} \ne \mu_{Y}
+$$
+Let $D_i := X_i - Y_i$, for $i= 1,2,\cdots, n$
+Consider the paired statistic
+$$
+\begin{aligned}
+T&:= \frac{\bar D}{\frac{S_{D}}{\sqrt{n}}} \\
+&= \frac{\bar X - \bar Y}{\frac{S_{D}}{\sqrt{n}}}
+\end{aligned}
+$$
+Under $H_0:\mu_X = \mu_Y$, $T\sim t(n-1)$
+> [!note]
+> Paired t-test（配对 t 检验）的核心思想只有一句话——“把两列数据相减，变成一列数据，然后对这一列差值做单样本 t 检验”
+> 1. 假设 $H_0:\mu_X=\mu_Y$
+> 2. 造一列差值 $D_i=X_i-Y_i$
+> 3. 用差值的均值 (mean) 除以差值的标准误 (standard deviation)，得到 $T$，它在 $H_0$ 下服从 $t(n-1)$。
+
+Once data $x_1, \cdots, x_n$ and $y_1, \cdots, y_n$ are observed, we can compute
+$$
+t = \frac{\bar x - \bar y}{\frac{s_{D}}{\sqrt{n}}}
+$$
+$p$-value is 
+$$
+\begin{aligned}
+p &= \Pr(|T| > |t|; H_{0}) \\
+&= 2\Pr(T>|t|; T\sim t(n-1))
+\end{aligned}
+$$
+Decision rules: Reject $H_0$ at significance level $\alpha$ when either
+- $p\le \alpha$ OR
+- $|t| \ge t_{\frac{\alpha}{2}}(n-1)$ OR
+- $0\notin \left( \bar x - \bar y - t_{\frac{\alpha}{2}}(n-1) \frac{s_{D}}{\sqrt{n}}, \bar x - \bar y + t_{\frac{\alpha}{2}}(n-1) \frac{s_{D}}{\sqrt{n}} \right)$
+
+> [!Note]
+> Same as previous interval,
+> $$
+> \left( \bar x - \bar y - t_{\frac{\alpha}{2}}(n-1) \frac{s_{D}}{\sqrt{n}}, \bar x - \bar y + t_{\frac{\alpha}{2}}(n-1) \frac{s_{D}}{\sqrt{n}} \right) \equiv \bar x - \bar y \pm t_{\frac{\alpha}{2}}(n-1) \frac{s_{D}}{\sqrt{n}}
+> $$
+> It is just the paired $t$-interval
+
+#### Example
+> 24 girls in the 9th and 10th grades were put on an ultraheavy rope-jumping program. 
+> Someone thought that such a program would increase their speed in the 40-yard dash. 
+> Let $D$ equal the difference in time to run the 40-yard dash-the "before-program time" ($X$) minus the "after-program time" ($Y$). 
+> Assume that the distribution of $D$ is approximately $N(\mu_d,\sigma_d^2)$. 
+> We shall test $H_0:\mu_D=0$ against $H_1:\mu_D>0$ at significance level $\alpha=0.10$. 
+> We observe $n=24$, $\bar d=0.0788$, $s_D=0.2549$.
+
+$$
+\begin{aligned}
+t &= \frac{0.0788}{\frac{0.2549}{\sqrt{24}}} \\
+&\approx 1.514 \\
+\text{$p$-value approach: }\quad p&= P(T \ge 1.514; T\sim t(23)) \\
+0.05 < p &<0.1 \\
+&<0.1 \\
+\therefore &\text{ Reject $H_0$ at 10\% significance level} \\  \\
+
+\text{Critical region approach: } t_{0.10} (23) &=1.319 \\
+&< |t| \\
+\therefore &\text{ Reject $H_0$ at 10\% significance level} \\ \\
+\text{CI approach: } \text{The 90\% one-sided paired CI} &=  \left( 0.0788-t_{0.10}(23)\left( \frac{0.2549}{\sqrt{24}} \right) ,\infty \right)\\
+&= \left( 0.0788 - 1.319 \left( \frac{0.2549}{\sqrt{24}} \right), \infty \right) \\
+&= (0.0101, \infty) \\
+0 &\notin (0.0101, \infty) \\
+\therefore &\text{ Reject $H_0$ at 10\% significance level}
+\end{aligned}
+$$
+## Test Equality of Two Normal Variances
+Suppose two independent populations with i.i.d. samples
+- $X_1, \cdots, X_n \sim N(\mu_X, \sigma_X^2)$
+- $Y_1, \cdots, Y_m \sim N(\mu_Y, \sigma_Y^2)$
+
+To test $H_0:\sigma_X^2 = \sigma^2_Y$ versus $H _1:\sigma_X^2 \ne \sigma^2_Y$ ,
+we have
+$$
+\begin{aligned}
+U &= \frac{(n-1)S_{X}^2}{\sigma_{X}^2} \sim \chi^2(n-1) \\
+V &= \frac{(m-1)S_{Y}^2}{\sigma^2_{Y}} \sim \chi^2(m-1)
+\end{aligned}
+$$
+Recall $F$-distribution definition,
+> [!note] F-distribution
+> If $U\sim \chi^2(u), V\sim \chi^2(v)$ independent, then
+> $$
+> \frac{\frac{U}{u}}{\frac{V}{v}} \sim F(u,v)
+> $$
+
+Define test statistic
+$$
+F:= \frac{\frac{U}{n-1}}{\frac{V}{m-1}} = \frac{\frac{S^2_{X}}{\sigma_{X}^2}}{\frac{S^2_{Y}}{\sigma_{Y}^2}}
+$$
+Under $H_0:\sigma^2_ X = \sigma_Y^2$, the ratio becomes
+$$
+F = \frac{S_{X}^2}{S^2_{Y}} \sim F(n-1, m-1)
+$$
+
+Once data $x_1, \cdots, x_n$ and $y_1, \cdots, y_m$ is observed, we can compute
+$$
+f = \frac{s_{X}^2}{s^2_{Y}}
+$$
+Reject $H_0$ at significance level $\alpha$ when
+$$
+f \ge F_{\frac{\alpha}{2}} (n-1, m-1) \text{ or } f\le F_{1-\frac{\alpha}{2}} (n-1, m-1)
+$$
+> [!note]
+> For $F$ distribution, 
+> $$
+> F_{1-\frac{\alpha}{2}} (n-1, m-1) = \frac{1}{F_{\frac{\alpha}{2}} (m-1,n-1)}
+> $$
+
+![Two-sided F-test.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/Two-sided%20F-test.png)
+
+**For two-sided test** $H_0:\sigma^2_X = \sigma^2_Y$ versus $H_1:\sigma_X^2 \ne \sigma_Y^2$
+- When $f>1$, $p$-value is 
+$$
+p = 2\Pr(F>f; F\sim F(n-1, m-1))
+$$
+- When $f<1$, $p$-value is 
+$$
+p = 2\Pr(F<f; F\sim F(n-1, m-1))
+$$
+> [!note]
+> $F\sim F(n-1, m-1)$,
+> - 左边的 $F$：是一个随机变量，就是 $\frac{s_X^2}{s_Y^2}$。它是一个"数"。
+> - 右边的 $F$：是 F 分布（F-distribution）。它是一整条曲线，不是一个数。
+
+![Test Equality of Two Normal Variances.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/Test%20Equality%20of%20Two%20Normal%20Variances.png)
+Decision rules: Reject $H_0$ at significance level $\alpha$ when either
+- $p \le \alpha$ OR
+- $f \ge F_{\frac{\alpha}{2}} (n-1, m-1) \text{ or } f\le F_{1-\frac{\alpha}{2}} (n-1, m-1)$
+- $1 \notin \underbrace{\left[\frac{s^2_Y}{s^2_{X}} F_{1-\frac{\alpha}{2}}(n-1, m-1), \frac{s^2_Y}{s^2_{X}} F_{\frac{\alpha}{2}}(n-1, m-1) \right]}_{\text{two-sided }100(1-\alpha)\% \text{ CI of } \frac{\sigma_{Y}^2}{\sigma^2_{X}}}$
+
+|            | 数据关系 | 方差假设                      | 统计量分母                                    | 自由度     | 何时用它    |
+| ---------- | ---- | ------------------------- | ---------------------------------------- | ------- | ------- |
+| **Pooled** | 独立   | $\sigma_X^2=\sigma_Y^2$   | $S_p\sqrt{\frac1n+\frac1m}$              | $n+m-2$ | 独立且方差相等 |
+| **Welch**  | 独立   | $\sigma_X^2\ne\sigma_Y^2$ | $\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}}$ | $r$（修正） | 独立且方差不等 |
+| **Paired** | 配对   | 只看差值 $D$                  | $\frac{S_D}{\sqrt n}$                    | $n-1$   | 同一批人测两次 |
+

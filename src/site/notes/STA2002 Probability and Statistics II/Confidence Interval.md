@@ -50,7 +50,7 @@ The computed interval, $\bar{x} \pm \frac{ \sigma z_{\frac{\alpha}{2}}}{\sqrt{n}
 > 我们使用 $q_{1-\frac{\alpha}{2}}$ 和 $q_{\frac{\alpha}{2}}$ 是为了让置信区间（Confidence Interval）左右对称。
 > 这样不仅能最公平地分配误差，而且能让这个区间在数轴上变得最短，从而提高估计的精度。
 > $q_{1-\frac{3}{4}\alpha}, q_{\frac{\alpha}{4}}$ 虽然覆盖的面积是对的，但会导致区间“歪”向一边，不够精准。
-![CI.png](/img/user/%E9%99%84%E4%BB%B6/CI.png)
+![CI.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/CI.png)
 
 | Fixed            | Change              | Width        |
 | ---------------- | ------------------- | ------------ |
@@ -114,7 +114,7 @@ P\left\{ \bar X + z_{\alpha}\frac{\sigma}{\sqrt{n}}\ge \mu \right\} &= 1-\alpha
 \end{align}
 $$
 Hence, confidence interval is $\left( -\infty, \bar X + z_{\alpha} \frac{\sigma}{\sqrt{n}} \right]$
-![One-sided CI.png](/img/user/%E9%99%84%E4%BB%B6/One-sided%20CI.png)
+![One-sided CI.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/One-sided%20CI.png)
 ### Case 2: Non-Normal Distribution ($\sigma^2$ Known)
 $X_1, \cdots, X_n$ are i.i.d. with mean $\mu = \mathbb E(X_1)$ and variance $\sigma^2 = Var(X_1)$, which is known.
 By Central Limit Theorem, for large $n$,
@@ -319,7 +319,7 @@ Compared to pooled $t$-interval $[-3.65, 9.05]$, Welch's $t$-interval is wider t
 > [!important] Definition
 > **Paired samples**
 > Each data point in the first sample is matched & related to a unique data point in the second sample
-> ![paired_sample.png](/img/user/%E9%99%84%E4%BB%B6/paired_sample.png)
+> ![paired_sample.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/paired_sample.png)
 
 Let $(X_1, Y_1), \cdots, (X_n, Y_n)$ be $n$ pairs of dependent measures.
 Let $D_i = X_i-Y_i$. 

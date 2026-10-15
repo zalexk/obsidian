@@ -12,7 +12,7 @@ Histogram is used to visualize continuous observations by grouping data into sev
 		- Relative frequency = $\frac{n_j}{n}$
 		- Density = $\frac{n_j}{w_j n}$
 			- Sum of areas of all bins always equal to 1: $\sum_{j=1}^k w_j \left(\frac{n_j}{w_j n} \right)= 1$
-	- ![histogram.png](/img/user/%E9%99%84%E4%BB%B6/histogram.png)
+	- ![histogram.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/histogram.png)
 - **Area:** Proportional to the num. of observations 
 In PDF, probability is the area under the density curve. 
 Histogram is the discrete version for PDF.
@@ -25,7 +25,7 @@ The bin size (num. of bins) is important
 $$
 \min, \overbrace{\underbrace{Q_1}_\frac{1}{4}, \underbrace{Q_2}_{\text{median}}, \underbrace{Q_3}_\frac{3}{4}}^{\text{Interquartile range}}, \max
 $$
-![boxplot.png](/img/user/%E9%99%84%E4%BB%B6/boxplot.png)
+![boxplot.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/boxplot.png)
 - IQR = $Q_3-Q_ 1$
 - Fence
 	- **Inner fence:** Left /right of box at distance $(1.5\times IQR)$
@@ -235,7 +235,7 @@ L(\theta) = \begin{cases}
 \end{cases}
 $$
 However, we cannot use $\ell'(\theta) = 0$ to find $\hat \theta$ because $\hat \theta$ is on the boundary or at a discontinuous point.
-![sta2002_uniform_mle_Ltheta.png\|479](/img/user/%E9%99%84%E4%BB%B6/sta2002_uniform_mle_Ltheta.png)
+![sta2002_uniform_mle_Ltheta.png\|479](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/sta2002_uniform_mle_Ltheta.png)
 Hence, we need to introduce indicator function to rewrite $L(\theta)$.
 Indicator function is 
 $$

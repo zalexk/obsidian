@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-10-15T15:40:23.272+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-10-20T01:50:49.706+08:00","dg-note-properties":{}}
 ---
 
 
@@ -10,7 +10,7 @@
 - **Alternative hypothesis $H_1$:** The competing claim / assumption against which we would like to test the initial claim / assumption
 	- 通俗来说：想证明的新发现
 > [!tip]
-> 判决要么是"**reject / retain 拒绝 $H_0$ **"，要么是"**fail to reject 未能拒绝 $H_0$ **"，而**不是"接受 $H_0$"**。
+> 判决要么是"**reject 拒绝 $H_0$ **"，要么是"**fail to reject 未能拒绝 $H_0$ **"，而**不是"接受 $H_0$"**。
 - **Simple hypothesis:** Hypothesis in which $\mu$ only takes on 1 value
 - **Composite hypothesis:** Hypothesis in which $\mu$ takes on a range of value
 
@@ -504,7 +504,7 @@ Under $H_0:\mu_X = \mu_Y$, $T\sim t(n-1)$
 > Paired t-test（配对 t 检验）的核心思想只有一句话——“把两列数据相减，变成一列数据，然后对这一列差值做单样本 t 检验”
 > 1. 假设 $H_0:\mu_X=\mu_Y$
 > 2. 造一列差值 $D_i=X_i-Y_i$
-> 3. 用差值的均值 (mean) 除以差值的标准误 (standard deviation)，得到 $T$，它在 $H_0$ 下服从 $t(n-1)$。
+> 3. 用差值的均值 （mean）除以差值的标准误 $\frac{S_D}{\sqrt n}$（standard error）；其中 $S_D$ 是差值的样本标准差（standard deviation）。其中 $S_D$ 是差值的样本标准差。得到 $T$，它在 $H_0$ 下服从 $t(n-1)$。
 
 Once data $x_1, \cdots, x_n$ and $y_1, \cdots, y_n$ are observed, we can compute
 $$
@@ -612,8 +612,8 @@ p = 2\Pr(F<f; F\sim F(n-1, m-1))
 $$
 > [!note]
 > $F\sim F(n-1, m-1)$,
-> - 左边的 $F$：是一个随机变量，就是 $\frac{s_X^2}{s_Y^2}$。它是一个"数"。
-> - 右边的 $F$：是 F 分布（F-distribution）。它是一整条曲线，不是一个数。
+> - 左边的 $F$：是一个随机变量，就是 $\frac{S_X^2}{S_Y^2}$。代入数据后得到观测值 $f=\frac{s_X^2}{s_Y^2}$，它是一个数。
+> - 右边的 $F$：是 F 分布（F-distribution）。
 
 ![Test Equality of Two Normal Variances.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/Test%20Equality%20of%20Two%20Normal%20Variances.png)
 Decision rules: Reject $H_0$ at significance level $\alpha$ when either
@@ -628,3 +628,201 @@ Decision rules: Reject $H_0$ at significance level $\alpha$ when either
 | **Paired** | 配对   | 只看差值 $D$                  | $\frac{S_D}{\sqrt n}$                    | $n-1$   | 同一批人测两次 |
 
 ![t-test-one-table.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/t-test-one-table.png)
+## Hypothesis Testing for Proportions
+Let $p$ be the proportion of population who has certain characteristic
+To estimate $p$, draw $n$ i.i.d. random samples
+$$
+X_{1}, \cdots, X_{n} \sim \text{Bernoulli}(p)
+$$
+where each $X_i$ is $1$ when it has the characteristic and $0$ if doesn't have
+
+Denote $Y=\sum_{i=1}^n X_i \sim \text{Bin}(n,p)$, then
+$$
+\begin{aligned}
+\mathbb E(Y) &= np \\
+Var(Y) &= np(1-p)
+\end{aligned}
+$$
+If $n$ is large enough, by CLT, 
+$$
+\hat p = \frac{Y}{n} = \frac{\sum^n_{i=1}X_{i}}{n} \stackrel{approx}{\sim} N\left( p, \frac{p(1-p)}{n} \right)
+$$
+
+
+Given null hypothesis test $H_0:p = p_0$, construct test statistic as follow
+$$
+T:= \frac{\hat p - p_{0}}{\sqrt{\frac{p_{0}(1-p_{0})}{n}}}
+$$
+Under $H_0$, $T\sim N(0,1)$ approximately
+
+Once data $x_1, \cdots, x_n$, are observed, we can compute
+$$
+t = \frac{\hat p - p_{0}}{\sqrt{\frac{p_{0}(1-p_{0})}{n}}}
+$$
+$t$ is the realized value of $T$ (即 $t$ 是 $T$ 的观测值)
+
+
+**For one-sided test:** $H_0:p= p_0, H_1:p\boxed>p_ 0$
+$p$-value is
+$$
+\Pr(T>t; H_{0}) = \Pr(Z>t)
+$$
+where $Z\sim N(0,1)$
+
+Reject $H_0$ at significance level $\alpha$ when either
+- $p$-value $p \le \alpha$ OR
+- $t\ge z_\alpha$ OR
+- $\hat p \ge p_0 + z_\alpha \sqrt{\frac{p_0(1-p_0)}{n}}$
+
+**For one-sided test:** $H_0:p=p_ 0, H_1: p\boxed< p_0$
+$p$-value is 
+$$
+\Pr(T < t; H_{0}) = \Pr(Z<t)
+$$
+Reject $H_0$ at significance level $\alpha$ when either
+- $p$-value $p\le \alpha$ OR
+- $t\le -z_\alpha$ OR
+- $\hat p \le p_0 - z_\alpha \sqrt{\frac{p_0(1-p_0)}{n}}$
+
+**For two-sided test** $H_0:p = p_0, H_1: p\ne p_0$
+$p$-value is 
+$$
+\Pr(|T| > |t| ; H_0) = 2\Pr(Z > |t|)
+$$
+Reject $H_0$ at significance level $\alpha$ when either
+- $p$-value $p \le \alpha$ OR
+- $|t| \ge z_\frac{\alpha}{2}$ OR
+- $\hat p \ge p_{0} + z_{\frac{\alpha}{2}} \sqrt{\frac{p_{0}(1-p_{0})}{n}}$ or $\hat p \le p_0 - z_{\frac{\alpha}{2}} \sqrt{\frac{p_{0}(1-p_{0})}{n}}$
+
+#### Example
+> It was claimed that many commercially manufactured dice are not fair because the “spots” are really indentations, so that, for example, the 6-side is lighter than the 1-side. 
+> Let $p$ equal the probability of rolling a 6 with one of these dice.
+> To test $H_0: p = \frac{1}{6}$ against the alternative hypothesis $H_1 : p\ne \frac{1}{6}$ with significance level $\alpha = 5\%$, several such dice will be rolled to yield a total of $n=8000$ observations, and the number 6 appears 1389 times.
+
+Let $Y$ be the no. of times that 6 resulted in the 8000 trials.
+Then, the test statistics is 
+$$
+\begin{aligned}
+Z &= \frac{\left( \frac{Y}{n} -\frac{1}{6} \right)}{\sqrt{\frac{\left( \frac{1}{6} \right)\left( \frac{5}{6} \right)}{n}}} \stackrel{approx}{\sim} N(0,1) \\
+t &= \frac{\left( \frac{1389}{8000} - \frac{1}{6} \right)}{\sqrt{\frac{\left( \frac{1}{6} \right)\left( \frac{5}{6} \right)}{8000}}} \\
+&= 1.67 \\
+z_{\frac{\alpha}{2}} &= z_{0.025} \\
+&= 1.96
+\end{aligned}
+$$
+- Critical region approach: $|t| = 1.67 < 1.96$
+	- Hence, fail to reject $H_0$ at $5\%$ significance level
+- $p$-value approach
+$$
+\begin{aligned}
+p &= 2\Pr(Z > |t|) \\
+&= 2\Pr(Z > 1.67) \\
+&= 2(0.0475) \\
+&= 0.095 \\
+&\ge 0.05
+\end{aligned}
+$$
+	- Hence, fail to reject $H_0$ at $5\%$ significance level
+If set $\alpha = 0.1$ with $z_{0.05} = 1.64$, $H_0$ will be rejected at $10\%$ significance level
+> [!note]
+> 显著性水平 $\alpha$ 是你自己事先选的门槛，门槛放松（从 5% 放宽到 10%），同样的数据就可能变成“拒绝 $H_0$”。
+> 结论会随 $\alpha$ 改变，所以 $\alpha$ 必须在做实验之前就定好。
+> 
+> 这就是为什么统计上严禁“先看 p 值，再挑一个刚好能拒绝 $H_0$ 的 $\alpha$”（这是 p-hacking，也就是操纵数据/分析方式）。
+> $\alpha$ 必须在看数据之前定死。而且报告时正确说法是“在 10% 显著性水平下拒绝”，而不是“骰子确实不公平”。
+### Hypothesis Testing for Equality of Two Proportions
+Given there are 2 populations, namely population 1 and population 2.
+Let $p_1$ and $p_2$  be the proportion of population 1 and 2 respectively, who has a certain characteristic.
+
+Test on $H_0 : p_1 = p_2$ against possible alternative hypothesis $H_1$
+
+Denote the samples to be 
+$$
+\begin{aligned}
+X_{1,1}, \cdots, X_{1,n} &\sim \text{Bernoulli}(p_1) \\
+X_{2,1}, \cdots, X_{2,m} &\sim \text{Bernoulli}(p_2)
+\end{aligned}
+$$
+Assume they're independent
+
+Denote the sums to be
+$$
+\begin{aligned}
+Y_1 &= \sum^n_{i=1} X_{1,i} \sim \text{Bin}(n ,p_1) \\
+Y_2 &= \sum^m_{i=1} X_{2,i} \sim \text{Bin}(m ,p_2)
+\end{aligned}
+$$
+
+MLE of $p_1, p_2$ are
+$$
+\begin{aligned}
+\hat p_{1} &= \frac{Y_{1}}{n} \\
+\hat p_{2} &= \frac{Y_{2}}{m}
+\end{aligned}
+$$
+If $n,m$ are large enough, then by CLT,
+$$
+\hat p_{1} - \hat p_{2} \stackrel{approx}{\sim} N\left( p_{1} - p_{2}, \frac{p_{1}(1-p_{1})}{n} + \frac{p_{2}(1-p_{2})}{m} \right)
+$$
+
+**For two-sided test** $H_0:p_ 1 = p_2, H_1:p_ 1 \ne p_2$
+Under $H_0$, $p_1 =p_2$ and
+$$
+\hat p_{1} - \hat p_{2} \stackrel{approx}{\sim} N\left( 0, p_{1}\left( 1-p_{1}\right) \left( \frac{1}{n} + \frac{1}{m} \right)  \right)
+$$
+Approximate $p_1$ by 
+$$
+\hat p = \frac{Y_{1} + Y_{2}}{n+m}
+$$
+Construct test statistic
+$$
+T:= \frac{\hat p_{1} - \hat p_{2}}{\sqrt{\hat p (1-\hat p) \left( \frac{1}{n} + \frac{1}{m} \right)}}
+$$
+Under $H_0$, $T\stackrel{approx}{\sim} N(0,1)$
+
+Once data $y_1, y_2$ are observed, we can compute 
+$$
+t =  \frac{\left( \frac{y_{1}}{n} - \frac{y_{2}}{m} \right)}{\sqrt{\hat p(1-\hat p)\left( \frac{1}{n} + \frac{1}{m} \right)}}
+$$
+$p$-value is
+$$
+p = \Pr(|T| > |t|; H_{0}) = 2\Pr(Z>|t|)
+$$
+Reject $H_0$ at significance level $\alpha$ when either
+- $p$-value $\le \alpha$ OR
+- $|t| \ge z_{\frac{\alpha}{2}}$ OR
+- $|\hat p_1 - \hat p_2| \ge z_{\frac{\alpha}{2}}\sqrt{\hat p(1-\hat p)\left( \frac{1}{n} + \frac{1}{m} \right)}$
+#### Example
+> In a sample of $n = 200$, we have$y_1 = 22$ low birth weight babies in Country 1. 
+> In a sample of $m = 100$ we find $y_2 = 16$ low birth weight babies in Country 2
+> Please test $H_0:p_ 1 = p_2$ versus $H_1:p_ 1\ne p_2$ at significance level $5\%$
+
+$$
+\begin{aligned} \\
+\hat p &= \frac{22+16}{200+100} \\
+&= \frac{38}{300} \\
+&= \frac{19}{150} \\
+t &= \frac{\frac{22}{200}- \frac{16}{100}}{\sqrt{\frac{19}{150}\left( 1-\frac{19}{150} \right)\left( \frac{1}{200}+\frac{1}{100} \right)}} \\
+&\approx -1.227
+\end{aligned}
+$$
+- Critical region approach: 
+$$
+\begin{aligned}
+z_{0.025} &= 1.96 \\
+&> |t| \\
+&= 1.227
+\end{aligned}
+$$
+	- Fail to reject $H_0$ at $5\%$ significance level
+- $p$-value approach
+$$
+\begin{aligned}
+p &= 2\Pr(Z>1.227) \\
+&= 2\Pr(Z>1.23) \\
+&= 0.219 \\
+&> 0.05
+\end{aligned}
+$$
+	- Fail to reject $H_0$ at $5\%$ significance level
+![Summary of Hypothesis Tests for Proportions.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/Summary%20of%20Hypothesis%20Tests%20for%20Proportions.png)

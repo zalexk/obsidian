@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/confidence-interval/","created":"2026-09-22T23:32:14.270+08:00","updated":"2026-10-03T00:35:33.947+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/confidence-interval/","created":"2026-09-22T23:32:14.270+08:00","updated":"2026-10-22T21:15:36.268+08:00","dg-note-properties":{}}
 ---
 
 
@@ -43,7 +43,7 @@ Once the sample is observed,we can compute the sample mean $\bar x$
 > $\bar X$  是随机变量，所以 interval 是随机的；
 > 一旦样本观测完，把 $\bar X$ 换成具体数字 $\bar x$，interval 就固定了
 
-The computed interval, $\bar{x} \pm \frac{ \sigma z_{\frac{\alpha}{2}}}{\sqrt{n}}$ is $100(1-\alpha)\%$ , is confidence interval of $\mu$
+The computed interval, $\bar{x} \pm z_{\frac{\alpha}{2}}\frac{ \sigma }{\sqrt{n}}$ is $100(1-\alpha)\%$ , is confidence interval of $\mu$
 - CI is centered at $\bar x$ (a point estimate of $\mu$)
 - Width: $2z_{\frac{\alpha}{2}}\left( \frac{\sigma}{\sqrt n} \right)$
 > [!note]
@@ -404,9 +404,9 @@ With same center $\bar d = \bar x- \bar y$, CI widths are different
 $$
 \begin{align}
 \text{Let }X_i &=  
-\begin{cases}  & 
+\begin{cases} 
  1, \quad &\text{favour candidate A}  \\ 
-0, &\text{favour candidate B} 
+0, \quad &\text{favour candidate B} 
 \end{cases} \\
 X_{1},\cdots, X_{n} &\sim \text{Bernoulli}(p) \\
 \text{Denote } Y&= \sum_{i=1}^n X_{i} \sim \text{Bin}(n,p)\\
@@ -512,7 +512,7 @@ We requires the half-width must be less than a given tolerance $\epsilon$ in pre
 $$
 \begin{align}
 z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} &\le \epsilon \\
-n &\ge \frac{z_{\frac{\alpha}{2}}^2\sigma^2}{\epsilon^2}
+n &\ge z_{\frac{\alpha}{2}}^2\frac{\sigma^2}{\epsilon^2}
 \end{align}
 $$
 
@@ -546,7 +546,7 @@ However, there are 2 issues
 - $s^2$ depends on $n$. Hence, we have to estimate $s^2_p$ from prior knowledge / pilot study
 Finally,
 $$
-n\ge \frac{z^2_{\frac{\alpha}{2}} (s^2_{p})}{\epsilon ^2}
+n\ge z^2_{\frac{\alpha}{2}} \frac{ (s^2_{p})}{\epsilon ^2}
 $$
 
 ### Proportion

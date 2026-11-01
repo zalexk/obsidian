@@ -1,7 +1,6 @@
 ---
-{"dg-publish":true,"permalink":"/csc-3001-discrete-math/methods-of-proofs/","created":"2026-10-05T18:53:49.279+08:00","updated":"2026-10-27T02:10:15.870+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/csc-3001-discrete-math/methods-of-proofs/","created":"2026-10-05T18:53:49.279+08:00","updated":"2026-10-27T11:19:31.989+08:00","dg-note-properties":{}}
 ---
-
 
 ## Direct Proof
 Write assume $P$, the show $Q$ is logically follows

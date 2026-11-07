@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/ece-2050-digital-logic-and-system/boolean-algebra-and-logic-simplification/","created":"2026-10-28T17:32:30.083+08:00","updated":"2026-11-01T12:50:37.275+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/ece-2050-digital-logic-and-system/boolean-algebra-and-logic-simplification/","created":"2026-10-28T17:32:30.083+08:00","updated":"2026-11-02T11:11:58.078+08:00","dg-note-properties":{}}
 ---
 
 
@@ -26,7 +26,7 @@ A circuit is combinational circuits if
 - Every node is either an input / connect to exactly one output
 - The circuit contains no cyclic paths 没有环状路径
 ## Boolean Algebra - Axioms & Theorems
-*Pending*
+*Skip*
 ## SOP, POS
 - **Literal:** A variable / its complement
 	- e.g. $A,\overline A, B, \overline B$

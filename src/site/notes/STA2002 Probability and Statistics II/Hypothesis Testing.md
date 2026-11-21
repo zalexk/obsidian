@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-11-21T19:15:35.876+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-11-22T00:42:23.412+08:00","dg-note-properties":{}}
 ---
 
 
@@ -866,7 +866,7 @@ K(\mu)&= \Pr\left( \frac{\overline X - \mu}{\sqrt{4}} \ge \frac{62 - \mu}{\sqrt{
 &= 1-\Phi\left( \frac{62-\mu}{2} \right)
 \end{aligned}
 $$
-![Power Function Curve.png](/img/user/Power%20Function%20Curve.png)
+![Power Function Curve.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/Power%20Function%20Curve.png)
 When $\mu=60, K(60) = \alpha$
 $$
 \begin{aligned}
@@ -1164,7 +1164,7 @@ $$
 n &\approx \frac{ 2\left( z_{\frac{\alpha}{2}} + z_{\beta} \right)^2\sigma^2 }{\Delta^2}
 \end{aligned}
 $$
-![Pasted image 20261120022331.png](/img/user/Pasted%20image%2020261120022331.png)
+![Summary of Power & Sample Size.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/Summary%20of%20Power%20&%20Sample%20Size.png)
 ### Power & Sample Size of Test for Proportions
 #### Example
 ##### Power Function

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-10-22T21:21:18.726+08:00","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/sta-2002-probability-and-statistics-ii/hypothesis-testing/","created":"2026-10-08T16:38:49.693+08:00","updated":"2026-11-21T19:15:35.876+08:00","dg-note-properties":{}}
 ---
 
 
@@ -190,7 +190,7 @@ $$
 \end{align}
 $$
 - For $H_0: \mu = 55$ versus $H_1: \mu \ne 55$
-	- 更极端方向是 $\bar X\ge 56$ and $\bar X \le 54$
+	- 更极端方向是 $\bar X\ge 56$ or $\bar X \le 54$
 $$
 \begin{align}
 \Pr\left( Z\ge \frac{56-55}{\sqrt{2.25}} \right) + \Pr\left( Z\le \frac{54-55}{\sqrt{2.25}} \right) &= P(Z\ge 0.667) + P(Z \le -0.667) \\
@@ -826,3 +826,441 @@ p &= 2\Pr(Z>1.227) \\
 $$
 	- Fail to reject $H_0$ at $5\%$ significance level
 ![Summary of Hypothesis Tests for Proportions.png](/img/user/STA2002%20Probability%20and%20Statistics%20II/Attachment/Summary%20of%20Hypothesis%20Tests%20for%20Proportions.png)
+## Power Function
+- **Power:** The prob. of rejecting $H_0$ assuming the parameter $\mu$
+- **Power function $K(\mu)$:** Function of the parameter $\mu\in \Omega$  
+$$
+K(\mu) := \Pr(T\in C; \mu)
+$$
+> [!note]
+> Power function can be denoted by $\pi(\mu)$, $M(\mu)$ or $\gamma(\mu)$
+
+- **Power of the test:** The value of power function at a specified $\mu$
+	- e.g. $K(0.5)$ denotes the power of the test at $\mu=0.5$
+With $H_0 : \mu = \mu_0$,
+- At $\mu = \mu_0, K(\mu_0) = \alpha$
+- At $\mu = \mu_1 > \mu_0, K(\mu_{1}) = 1-\beta(\mu_{1})$ 
+
+> [!note]
+> 把任意一个候选的参数值 $\mu$ 填进去，它回答你：如果真实世界里的参数真的是 $\mu$，那我的检验规则会拒绝 $H_0$ 的概率有多大。
+> 所以 $K(\mu)$ 是“拒绝 $H_0$ 的概率 $\Pr(T\in C)$”，随 $\mu$ 变化的一条曲线。
+> - 在 $\mu=\mu_0$（$H_0$ 那一点）：$K(\mu_0)=\alpha$ → 这就是 significance level（显著性水平），也就是 Type I error 概率；
+> 
+> - 在 $\mu=\mu_1$（$H_1$ 里面某一点）：$K(\mu_1)=1-\beta(\mu_1)$ → 这就是 power（功效）。
+#### Example
+> Let $X_1, X_2, \cdots, X_n$ be random sample of size $n$ from the normal distribution $N(\mu, 100)$.
+> We can suppose is a possible distribution of scores of students in a statistics course that uses a new method of teaching.
+> We wish to decide between $H_0:\mu = 60$ and $H_1:\mu>60$.
+> Let's consider a sample of size $n=25$ and the critical region is
+> $$ C = \{(x_{1}, x_{2}, \cdots, x_{n}) | \bar x \ge 62\}$$
+> What is the power function $K(\mu)$ of the test?
+> What is the value of $\alpha$ and $\beta$
+
+$$
+\begin{aligned}
+K(\mu) &= \Pr(\overline X \in C; \mu) \\
+&= \Pr(\overline X \ge 62;\mu) \\ \\
+\overline X &\sim N(\mu, 4) \\ \\
+K(\mu)&= \Pr\left( \frac{\overline X - \mu}{\sqrt{4}} \ge \frac{62 - \mu}{\sqrt{4}}\right) \\
+&= \Pr\left( Z \ge \frac{62-\mu}{2} \right) \\
+&= 1-\Phi\left( \frac{62-\mu}{2} \right)
+\end{aligned}
+$$
+![Power Function Curve.png](/img/user/Power%20Function%20Curve.png)
+When $\mu=60, K(60) = \alpha$
+$$
+\begin{aligned}
+K(60) &= 1-\Phi\left( \frac{62-60}{2} \right) \\
+&= 1-\Phi(1) \\
+&= 0.1587 \\
+&= \alpha
+\end{aligned}
+$$
+The significance level of the test is 15.87%
+When $\mu = 65$,
+$$
+\begin{aligned}
+K(65) &= 1-\Phi\left( \frac{62-65}{2} \right) \\
+&= 1-\Phi\left( -\frac{3}{2} \right) \\
+&= \Phi\left( \frac{3}{2} \right) \\
+&= 0.9332
+\end{aligned}
+$$
+The probability of rejecting $H_0$ is 93.32%
+$$
+\begin{aligned}
+\beta(65) &= 1-K(65) \\
+&= 1-0.9332 \\
+&= 0.0668
+\end{aligned}
+$$
+The probability of type II error is 6.68%
+
+> [!note] 
+> In practice, the value of $\alpha$ is pre-assigned.
+
+
+> What is the critical region of previous testing problem with given $\alpha = 0.05$?
+
+$$
+\begin{aligned}
+\alpha &=  0.05\\
+\Pr(\overline X \ge c; \mu = 60) &= 0.05\\
+\Pr\left( \frac{\overline X - 60}{2} \ge \frac{c-60}{2}; \mu = 60 \right) &= 0.05\\
+\Pr\left( Z \ge \frac{c-60}{2} \right)&= 0.05 \\
+\frac{c-60}{2} &= z_{0.05} \\
+c &= 63.29
+\end{aligned}
+$$
+The critical region is $C = \{(x_{1}, \cdots, x_{n}) | \overline x \ge 63.29 \}$
+
+For this critical region, the power function at $\mu = 65$ is 
+$$
+\begin{aligned}
+K(65) &= \Pr(\overline X \ge 63.29; \mu=65) \\
+&= 1-\Phi\left( \frac{63.29-65}{2} \right) \\
+&= 0.804 \\
+\beta(65)&= 1-K(65) \\
+&= 1-0.804 \\
+&= 0.196
+\end{aligned}
+$$
+
+### Power Function for One-sided Test
+Suppose that $X_1, X_2, \cdots, X_n \overset{i.i.d.}{\sim} N(\mu, \sigma^2)$ with known $\sigma^2$.
+Derive the power function for one-sample test for mean
+$$H_{0} : \mu=\mu_{0} \text{ versus } H_{1}:\mu>\mu_{0}$$
+The significance level $\alpha = 0.05$
+
+The critical region for the test is 
+$$
+C:= \left\{ (x_{1}, \cdots, x_{n}) |\overline x > \mu_{0} + z_{\alpha} \frac{\sigma}{\sqrt{n}}   \right\}
+$$
+$$
+\begin{aligned}
+K(\mu_{1}) &= \Pr\left( \overline X > \underbrace{\mu_{0} + z_{\alpha} \frac{\sigma}{\sqrt{n}}}_{C}; \mu = \mu_{1} \right) \\
+&= \Pr\left( \frac{\overline X - \mu_{1}}{\frac{\sigma}{\sqrt{n}}} > \frac{\mu_{0} - \mu_{1}}{\frac{\sigma}{\sqrt{n}}} + z_{\alpha}; \mu = \mu_{1}\right) \\
+&= \Pr\left( \frac{\overline X - \mu_{1}}{\frac{\sigma}{\sqrt{n}}} < \frac{\mu_{1} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} - z_{\alpha}; \mu = \mu_{1} \right) \\
+&= \Phi\left( \frac{\mu_{1} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}}  - z_{\alpha}\right)
+\end{aligned}
+$$
+### Factors Affecting the Power
+
+| Change                                   | Change in power |
+| ---------------------------------------- | --------------- |
+| $\alpha\downarrow \to z_\alpha \uparrow$ | $\downarrow$    |
+| $(\mu_1 - \mu_0 )\uparrow$               | $\uparrow$      |
+| $\sigma\uparrow$                         | $\downarrow$    |
+| $n\uparrow$                              | $\uparrow$      |
+
+With other factors fixed, 
+$$
+\alpha\downarrow \Rightarrow z_{\alpha} \uparrow \Rightarrow K(\mu_{1})\downarrow \Rightarrow \beta(\mu_{1})\uparrow
+$$
+Derive the power function for the test
+ $$H_{0} :\mu\ge \mu_{0} \text{ versus } H_{1}:\mu < \mu_{0}$$
+
+The critical region is 
+$$
+C:= \left\{ (x_{1}, \cdots, x_{n})\bigg{|} \frac{\overline X - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} <  -z_{\alpha}\right\}
+$$
+$$
+\begin{aligned}
+K(\mu_{1}) &= \Pr\left( \frac{\overline X - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} < - z_{\alpha}; \mu = \mu_{1}\right) \\
+&= \Pr\left( \frac{\overline X - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} - \frac{\mu_{1} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} < - z_{\alpha} - \frac{\mu_{1} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} \right) \\
+&= \Pr\left( \frac{\bar X - \mu_{1}}{\frac{\sigma}{\sqrt{n}}} < \frac{\mu_{0} - \mu_{1}}{\frac{\sigma}{\sqrt{n}}}  - z_{\alpha}; \mu = \mu_{1}\right) \\
+&= \Phi\left( \frac{\mu_{0} - \mu_{1}}{\frac{\sigma}{\sqrt{n}}} - z_{\alpha} \right)
+\end{aligned}
+$$
+#### Example
+> The service goal is to respond to medical emergencies with an average time of 12 minutes or less. 
+> The director of medical services wants to formulate a hypothesis test that could use a sample of emergency response times to determine whether or not the service goal of 12 minutes or less is being achieved. 
+> To test these hypotheses, a random sample of 40 past emergency response records were examined. 
+> The resulting mean response time was 13.25 minutes, assuming the true standard deviation equal to 3.2 minutes.
+> The level of significance is 0.05. 
+> **Please derive the power function and provide the power for $\mu_1=13.5$ min.**
+
+$$
+H_{0}: \mu \le 12 \text{ versus } H_{1}:\mu > 12
+$$
+Given
+$$
+\begin{cases}
+n &= 40 \\
+\mu_{0} &= 12 \\
+\sigma &= 3.2 \\
+\alpha &= 0.05
+\end{cases}
+$$
+> [!tip]
+>> The resulting mean response time was 13.25 minutes
+> 
+> 这个是观测均值
+> 功效函数是**事前设计量** ——它只依赖 $\mu_0,\sigma,n,\alpha$ 和备择点 $\mu_1$，跟这次抽样实际看到了什么**毫无关系** 
+
+$$
+\begin{aligned}
+K(\mu_{1}) &= \Phi\left( \frac{\mu_{1} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}}  - z_{\alpha}\right) \\
+&= \Phi\left( \frac{\mu_{1} - 12}{\frac{3.2}{\sqrt{40}}} - z_{0.05}\right) \\
+&= \Phi\left( \frac{\mu_{1} - 12}{\frac{3.2}{\sqrt{40}}} - 1.645 \right)
+\end{aligned}
+$$
+When $\mu_ 1 = 13.5$, the power is $K(13.5) = \Phi(1.3196) = 0.907$
+### Power Function for Two-sided Test for Mean
+Suppose $X_1, \cdots, X_n \sim N(\mu, \sigma^2)$ with known $\sigma^2$.
+Derive the power function for one-sample test for mean
+$$
+H_{0} : \mu = \mu_{0} \text{ versus } H_{1} : \mu\ne \mu_{0}
+$$
+The significance level $\alpha = 0.05$
+The critical region for the two-sided test for mean is given by
+$$
+|z| = \left|\frac{\overline x - \mu_{0}}{\frac{\sigma}{\sqrt{n}}}\right| > z_{\frac{\alpha}{2}}
+$$
+At $\mu = \mu_1$, $\frac{\overline X - \mu_{1}}{\frac{\sigma}{\sqrt{n}}} \sim N(0,1)$
+The power function $K(\mu_1)$ is
+$$
+\begin{aligned}
+K(\mu_{1}) &= \Pr\left( \left| \frac{\overline X - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} \right|  > z_{\frac{\alpha}{2}}; \mu=\mu_{1}\right) \\
+&= \Pr\left( \frac{\overline X - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} > z_{\frac{\alpha}{2}}; \mu=\mu_{1}\right) + \Pr\left( \frac{\overline X - \mu_{0}}{\frac{\sigma}{\sqrt{n}}}  < -z_{\frac{\alpha}{2}}; \mu=\mu_{1}\right) \\
+&= \Pr\left( \frac{\overline X - \mu_{1}}{\frac{\sigma}{\sqrt{n}}} > \frac{\mu_{0}-\mu_{1}}{\frac{\sigma}{\sqrt{n}}}+ z_{\frac{\alpha}{2}} ; \mu = \mu_{1}\right)  + \Pr\left( \frac{\overline X - \mu_{1}}{\frac{\sigma}{\sqrt{n}}} < \frac{\mu_{0}-\mu_{1}}{\frac{\sigma}{\sqrt{n}}} - z_{\frac{\alpha}{2}}\right) \\
+\text{Let } Z^* &= \frac{\overline X - \mu_{1}}{\frac{\sigma}{\sqrt{n}}} \\
+K(\mu_{1}) &= \Pr\left( Z^* > \frac{\mu_{0} - \mu_{1}}{\frac{\sigma}{\sqrt{n}}} + z_{\frac{\alpha}{2}}\right) + \Pr\left( Z^* < \frac{\mu_{0}-\mu_{1}}{\frac{\sigma}{\sqrt{n}}} - z_{\frac{\alpha}{2}} \right) \\
+&= 1-\Phi\left( \frac{\mu_{0}-\mu_{1}}{\frac{\sigma}{\sqrt{n}}}  + z_{\frac{\alpha}{2}}\right) + \Phi\left( \frac{\mu_{0}-\mu_{1}}{\frac{\sigma}{\sqrt{n}}} -z_{\frac{\alpha}{2}}\right) \\
+&= \Phi\left( \frac{\mu_{1}-\mu_{0}}{\frac{\sigma}{\sqrt{n}}} -z_{\frac{\alpha}{2}}\right) + \Phi\left( \frac{\mu_{0}-\mu_{1}}{\frac{\sigma}{\sqrt{n}}} -z_{\frac{\alpha}{2}}\right)
+\end{aligned}
+$$
+
+#### Example
+> The production line for Glow toothpaste is designed to fill tubes of toothpaste with a mean weight of 6 ounces. 
+> Periodically, a sample of 30 tubes will be selected in order to check the filling process. 
+> Quality assurance procedures call for the continuation of the filling process if the sample results are consistent with the assumption that the mean filling weight ... is 6 ounces; otherwise the filling process will be stopped and adjusted. 
+> Assume that a sample of 30 toothpaste tubes provides a sample mean of 6.1 ounces. 
+> We assume the population standard deviation is 0.2 ounces. 
+> **What power would such quality assurance procedures have of detecting a significant difference in the mean of the tubes at a 5% significance level if it is hypothesized that the true mean of the tube could be either an increase or a decrease of 0.5 ounces?**
+
+$$
+H_0: \mu = 6.0 \text{ versus } H_{1}: \mu\ne 6.0
+$$
+Given
+$$
+\begin{cases}
+\sigma &= 0.2 \\
+n&= 30 \\
+\alpha &= 0.05
+\end{cases}
+$$
+Compute $|\mu_1 - \mu_0| = 0.5$
+$$
+\begin{aligned}
+K(\mu_{1}) &= \Phi\left( \frac{\mu_{1}-\mu_{0}}{\frac{\sigma}{\sqrt{ n }}} - z_{\frac{\alpha}{2}} \right) + \Phi\left( \frac{\mu_{0} - \mu_{1}}{\frac{\sigma}{\sqrt{ n }}} - z_{\frac{\alpha}{2}} \right) \\
+&= \Phi\left( \frac{0.5}{\frac{0.2}{\sqrt{30}}} - z_{0.025} \right) + \Phi\left( -\frac{0.5}{\frac{0.2}{\sqrt{ 30 }}}  - z_{0.025}\right) \\
+&= \Phi(11.73) + \Phi(-15.65) \\
+&\approx 1
+\end{aligned}
+$$
+## Sample Size for One-sided Test of Mean
+For the test $H_0 : \mu = 60$ versus $H_1 :\mu > 60$,
+- $C = \{\overline X \ge 62 \}, \alpha = 0.1587, \beta(65) = 0.0668$
+- $C = \{\overline X \ge 63.29 \}, \alpha = 0.05, \beta(65) = 0.196$
+
+> Suppose we want $\alpha = 0.025$ and $\beta(65) = 0.05$ simultaneously. 
+> How many samples are required to control both type I and type II errors?
+
+Let the critical region be $C = \{\overline X \ge c\}$ for some constant $c$
+As $\overline X \sim N\left( \mu, \frac{100}{n} \right)$, it follows that
+$$
+\begin{aligned}
+\alpha &= \Pr(\overline X \ge c; \mu=60) \\
+&= 1-\Phi\left( \frac{c-60}{\frac{10}{\sqrt{n}}} \right) \\ \\
+
+\beta &= 1-\Pr(\overline X \ge c; \mu = 65) \\
+&= \Phi\left( \frac{c-65}{\frac{10}{\sqrt{n}}} \right)
+\end{aligned}
+$$
+Thus,
+$$
+\begin{cases}
+\frac{c-60}{\frac{10}{\sqrt{n}}} &= z_{0.025} &= 1.96 \\
+\frac{c-65}{\frac{10}{\sqrt{n}}} &= -z_{0.05} &= -1.645 \\
+\end{cases}
+$$
+Solving the equations
+$$
+\begin{cases}
+c &= 62.718 \\
+n &= 51.98
+\end{cases}
+$$
+Hence, when $n=52$, we get $\alpha = 0.025$ and $\beta = 0.05$
+
+We can also use the power function to obtain the required sample size
+$$
+\begin{aligned}
+K(\mu_{1}) &= \Phi\left( \frac{\mu_{1}-\mu_{0}}{\frac{\sigma}{\sqrt{ n }}} - z_{\alpha} \right) \\
+&= 1-\beta \\
+\text{As } \Phi(z_{\beta}) &= \Pr(Z \le z_{\beta}) = 1-\beta \\
+\frac{\mu_{1} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} -z_{\alpha}&= z_{\beta} \\
+n &= \left[ \frac{\sigma(z_{\alpha} + z_{\beta})}{\mu_{1} - \mu_{0}} \right]^2 \\
+&= \left[ \frac{10(z_{0.025} +z_{0.05})}{65-60} \right]^2 \\
+&= 51.98
+\end{aligned}
+$$
+
+### Sample Size for Two-sided Test of Mean
+Suppose that $X_1, \cdots, X_n \overset{i.i.d.}{\sim} N(\mu, \sigma^2)$ with known $\sigma^2$.
+$$
+H_{0} : \mu = \mu_{0} \text{ versus } H_{1} : \mu\ne \mu_{0}
+$$
+Given that we know the standard deviation $\sigma$ and the true alternative mean $\mu_1$
+Calculate the samples required to detect a significant difference at a significance level $\alpha$ and control the prob. of Type II error at $\beta$ ?
+$$
+\begin{aligned}
+K(\mu_{1}) &= \Phi\left( \frac{\mu_{1} - \mu_{0}}{\frac{\sigma}{\sqrt{ n }}} - z_{\frac{\alpha}{2}} \right) + \Phi\left( \frac{\mu_{0} - \mu_{1}}{\frac{\sigma}{\sqrt{ n }}}-z_{\frac{\alpha}{2}} \right) \\
+&= \Phi\left( \frac{|\mu_{1} - \mu_{0}|}{\frac{\sigma}{\sqrt{ n }}}  - z_{\frac{\alpha}{2}}\right) \\
+\text{Let } \Phi\left( \frac{|\mu_{1} - \mu_{0}|}{\frac{\sigma}{\sqrt{ n }}}  - z_{\frac{\alpha}{2}}\right) &= 1-\beta \\
+n &\approx \left[ \frac{\sigma\left( z_{\frac{\alpha}{2}}+z_{\beta} \right)}{|\mu_{1} - \mu_{0}|} \right]^2 \\
+&= \frac{\sigma^2\left( z_{\frac{\alpha}{2}} +z_{\beta}\right)^2}{(\mu_{1} - \mu_{0})^2}
+\end{aligned}
+$$
+If the alternative hypothesis $H_1$ is true with $\mu = \mu_1$, the sample sizes allowed to have $1-\beta$ chance to detect a significance difference at significance level $\alpha$ is $\frac{\sigma^2\left( z_{\frac{\alpha}{2}} + z_{\beta} \right)^2}{(\mu_{1} - \mu_{0})^2}$
+
+### Power & Sample Size for a Two-sample Test
+Suppose $X_1, \cdots, X_n \overset{i.i.d.}{\sim} N(\mu_X, \sigma^2)$ and $Y_1, \cdots, Y_n \overset{i.i.d.}{\sim} N(\mu_Y, \sigma^2)$ are samples drawn from 2 independent populations.
+
+Denote $\Delta:=\mu_X - \mu_Y$,
+$$
+\begin{aligned}
+H_{0} :\mu_{X}&=\mu_{Y} \text{ versus }H_{1}:\mu_{X}\ne \mu_{Y} \\
+H_{0}:\Delta &= 0 \text{ versus } H_{1}:\Delta\ne 0
+\end{aligned}
+$$
+Assume $\sigma^2$ is known.
+Test statistic is
+$$
+T:= \frac{\overline X - \overline Y}{\sqrt{\frac{2\sigma^2}{n}}}
+$$
+Under $H_0$, $T\sim N(0,1)$
+Under $H_1$ with $\Delta = \Delta_1: T\sim N\left( \frac{\Delta_{1}}{\sqrt{\frac{2\sigma^2}{n}}}, 1 \right)$
+For the given significance level $\alpha$, the critical region is 
+$$
+c:= \left\{ (x_{1}, \cdots, x_{n}, y_{1}, \cdots, y_{n}) | \ |t| > z_{\frac{\alpha}{2}}  \right\} 
+$$
+The power function is function of $\Delta$
+$$
+\begin{aligned}
+K(\Delta) &= \Pr\left( |T|>z_{\frac{\alpha}{2}};\Delta \right) \\
+&= \Pr\left( T> z_{\frac{\alpha}{2}};\Delta \right) + \Pr\left( T<-z_{\frac{\alpha}{2}};\Delta \right) \\
+&= \underbrace{1-\Phi\left( z_{\frac{\alpha}{2}} -\frac{\Delta}{\sqrt{2 \frac{\sigma^2}{n}}} \right)}_{1-\Phi(a) \equiv \Phi(-a)} + \Phi\left( -z_{\frac{\alpha}{2}} - \frac{\Delta}{\sqrt{\frac{2\sigma^2}{n}}} \right) \\
+&= \Phi\left( -z_{\frac{\alpha}{2}} + \frac{\Delta}{\sqrt{\frac{2\sigma^2}{n}}} \right) + \Phi\left( -z_{\frac{\alpha}{2}} - \frac{\Delta}{\sqrt{\frac{2\sigma^2}{n}}} \right)
+\end{aligned}
+$$
+For large $|\Delta|$, the power function $K(\Delta) \approx \Phi\left( -z_{\frac{\alpha}{2}} + \frac{|\Delta|}{\sqrt{ \frac{2\sigma^2}{n} }} \right)$
+Let $K(\Delta) = 1-\beta$,
+
+$$
+\begin{aligned}
+-z_{\frac{\alpha}{2}} + \frac{|\Delta|}{\sqrt{ \frac{2\sigma^2}{n} }} &\approx z_{\beta} \\
+n &\approx \frac{ 2\left( z_{\frac{\alpha}{2}} + z_{\beta} \right)^2\sigma^2 }{\Delta^2}
+\end{aligned}
+$$
+![Pasted image 20261120022331.png](/img/user/Pasted%20image%2020261120022331.png)
+### Power & Sample Size of Test for Proportions
+#### Example
+##### Power Function
+Suppose $X_1,\cdots, X_{20}$ are i.i.d. Bernoulli trials with success prob. $p$. 
+To test
+$$
+H_{0}:p=\frac{1}{2}, \quad H_{1}:p<\frac{1}{2}
+$$
+Test statistic
+$$
+Y:=\sum^{20}_{i=1}X_{i} \sim \text{Bin}(20,p)
+$$
+Given the critical region $C=\{Y\le 6\}$.
+$$
+\begin{aligned}
+K(p) &= \Pr(Y\le 6; p) \\
+&= \Pr\{Y\le 6; Y\sim \text{Bin}(20,p)\} \\
+&=\sum^6_{y=0} \binom{20}{y}p^y(1-p)^{20-y}
+\end{aligned}
+$$
+At $p=\frac{1}{2}, K\left( \frac{1}{2} \right) = \alpha$
+$$
+\begin{aligned}
+K\left( \frac{1}{2} \right) &= \Pr\left\{ Y\le 6; Y\sim \text{Bin}\left( 20, \frac{1}{2} \right) \right\} \\
+&= \sum^6_{y=0} \binom{20}{y} \left( \frac{1}{2} \right)^{20} \\
+&= 0.0577
+\end{aligned}
+$$
+The significance level of the test is 5.77%.
+
+At $p=\frac{1}{4}$,
+$$
+\begin{aligned}
+K\left( \frac{1}{4} \right) &= \Pr\left\{ Y\le 6; Y\sim \text{Bin}\left( 20, \frac{1}{4} \right)  \right\} \\
+&= 0.7858 \\
+\beta\left( \frac{1}{4} \right)&=1-K\left( \frac{1}{4} \right) \\
+&= 0.2142
+\end{aligned}
+$$
+If the true value is $p=\frac{1}{4}$, the probability of type II error is 21.42%.
+##### Sample Size
+Suppose we want $\alpha = 0.05$ and $\beta\left( \frac{1}{4} \right) = 0.1$ at the same time, then calculate the sample size
+Let $Y:= \sum^n_{i=1} X_{i}$ and critical region $C=\{ Y\le c\}$ for some positive integer $c$
+Approximate binomial distribution by normal distribution using CLT
+$$
+\frac{Y-np}{\sqrt{ np(1-p) }} \overset{\text{approx}}{\sim} N(0,1)
+$$
+To control type I error,
+$$
+\begin{aligned}
+\alpha &= \Pr\left( Y\le c; p=\frac{1}{2} \right) \\
+&= \Pr\left( \frac{\left( Y-\frac{n}{2} \right)}{\sqrt{\frac{n}{4}}} \le \frac{\left( c-\frac{n}{2} \right)}{\sqrt{ \frac{n}{4} }} \right) \\
+&\approx \Pr\left( Z \le \frac{\left( c-\frac{n}{2} \right)}{\sqrt{ \frac{n}{4} }} \right) \\
+\frac{\left( c-\frac{n}{2} \right)}{\sqrt{ \frac{n}{4} }}&\approx -z_{0.05} \\
+&= -1.645
+\end{aligned}
+$$
+To control type II error,
+$$
+\begin{aligned}
+\beta\left( \frac{1}{4} \right) &= \Pr\left( Y> c; p=\frac{1}{4} \right) \\
+&= \Pr\left( \frac{\left( Y-\frac{n}{4} \right)}{\sqrt{ \frac{3n}{16} }} > \frac{\left( c-\frac{n}{4} \right)}{\sqrt{ \frac{3n}{16} }}\right) \\
+\frac{c-\frac{n}{4}}{\sqrt{ \frac{3n}{16} }} &\approx  z_{0.1} \\
+&= 1.282 \\
+&\begin{cases}
+\frac{\left( c-\frac{n}{2} \right)}{\sqrt{ \frac{n}{4} }} &= -1.645 \\ \\
+
+\frac{c-\frac{n}{4}}{\sqrt{ \frac{3n}{16} }} &= 1.282 \\
+
+\end{cases} \\
+&\begin{cases}
+n &\approx 30.4 \approx 31\\
+c &\approx 10.65 \approx 10.5
+\end{cases}
+\end{aligned}
+$$
+> [!tip]
+> - $n$ 必须是整数 $\Rightarrow$ 向上取整到 31。只能往上取，不能往下（取 30 会让错误更大）。
+> - $Y$ 是计数，只能取整数 $0,1,2,\dots$。所以 $\Pr(Y\le 10.5)$ 和 $\Pr(Y\le 10)$ 完全相等——写 $.5$ 只是习惯写法，表示“最多 10 个”。
+
+
+| $(n,\ c)$         | $\alpha=K(1/2)$ | $K(1/4)$    | $\beta$   | 判定                     |
+| ----------------- | --------------- | ----------- | --------- | ---------------------- |
+| $(30,\ 10.5)$     | 0.0494 ✓        | 0.894       | 0.106     | ✗ $\beta$ 略超           |
+| $(31,\ 10.5)$     | 0.0354 ✓        | 0.872       | 0.128     | ✗ $\beta=0.128>0.1$    |
+| $(32,\ 11.5)$     | 0.0551 ✗        | 0.920 ✓     | 0.080     | ✗ $\alpha=0.0551>0.05$ |
+| $(33,\ 10.5)$     | 0.0175 ✓        | 0.819       | 0.181     | ✗ 功效太低（$c$ 太严）         |
+| **$(33,\ 11.5)$** | **0.0401 ✓**    | **0.901 ✓** | **0.099** | **✓ 唯一可行**             |
+
+To rigorously control Type I error at 0.05 and Type II error at 0.1, then it is required $n=33$
+
+- Derive the power function of the test for proportions using the CDF of binomial distribution
+  用二项分布的累积分布函数（CDF）写出功效函数（power function）
+- To find the required sample size for a given $\alpha$ and $\beta$, approximate exact binomial distribution by normal distribution
+  给定 $\alpha,\beta$，用正态近似反解样本量
+- Due to normal approximation, the obtained sample may not control $\alpha$ and $\beta$ rigorously
+  但近似解不能严格控制 $\alpha,\beta$
+- In reality, the exact distribution is often used to verify the Type I and Type II errors
+  所以实践要回到精确二项分布验算
